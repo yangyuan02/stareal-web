@@ -1,0 +1,377 @@
+<div ng-controller="DetailController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:110px;">
+        <div class="good_bg">
+            <img src="static/img/good_bg.png" alt="">
+        </div>
+        <!--演出头部开始-->
+        <div class="good_top">
+            <div class="detail-l fl">
+                <img ng-src="{{good.thumb}}" alt="">
+            </div>
+            <div class="detail-r fl">
+                <div class="detail-title">
+                    <p class="title"><a href="" ng-bind="good.title"></a></p>
+                </div>
+                <div class="detail-info">
+                    <div class="good-info fl">
+                        <p class="time" ng-bind="good.date"></p>
+                        <p class="addres">{{good.site_title}}--{{good.address}}</p>
+                        <div class="detail-status" ng-bind="btnText(good.state)" ng-style="btnSetColor(good.state)"></div>
+                        <p class="price">￥{{good.price}}起</p>
+                        <!--<div class="phone-erwei">-->
+                            <!--<span>手机下单立减10元<i></i></span>-->
+                            <!--<div class="erweima">-->
+                                <!--<p>手机下单立减10元<i></i></p>-->
+                                <!--<img src="static/img/appstoer.jpg" alt="">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="register_coupon">
+                            <p><span class="fl"></span><span class="fl">新用户注册送30元优惠劵</span></p>
+                        </div>
+                    </div>
+                    <div class="good-score fr">
+                        <p ng-if="!showstar">
+                            <span style="font-size: 50px;color: #F4CD1A;" ng-bind="star1"></span>
+                            <span style="color: #F4CD1A;margin:-4px;">.</span>
+                            <span style="font-size: 20px;color: #F4CD1A;letter-spacing: -1.21px;" ng-bind="star2"></span>
+                        </p>
+                        <p ng-if="showstar">暂无评分</p>
+                        <div class="star" ng-style="setPost(good.star)"></div>
+                        <div class="like bts" ng-click="collect(good.id)"><i class="{{favor==0?'':'active'}}"></i>想看</div>
+                        <div class="comment bts" scroll-top><i></i>评论</div>
+                        <p style="margin-top:20px;">已经出售{{good.sold}}张</p>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <!--演出头部结束-->
+        <!--演出内容开始-->
+        <div class="good_conten clear">
+            <div class="l_con fl">
+                <!--巡演开始-->
+                <div style="position: relative;" class="xunyan-1" ng-show="showXun">
+                    <div class="xunyan" ng-show="showXun">
+                        <div class="title">巡演信息</div>
+                        <div class="xun_adds">
+                            <ul>
+                                <li class="fl" ng-repeat="tour in tours" on-list-finish-render="latestFinishRendertour" ui-sref="main.detail({good_id:tour.good_id})">
+                                    <div class="add">
+                                        <div class="cen" ng-bind="tour.title" ng-class="{active:isActive(tour.good_id)}">
+                                        </div>
+                                    </div>
+                                    <p ng-bind="tour.date"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a class="btn_l1"></a>
+                    <a class="btn_r1"></a>
+                </div>
+                <!--巡演结束-->
+                <!--立即购票开始-->
+                 <div class="goupiao clear">
+                     <div class="guopiao-con">
+                         <div class="title" style="margin-bottom:40px;">立即购票</div>
+                         <div class="bookbox clear">
+                             <!--选择场次开始-->
+                             <div class="time clear">
+                                 <div class="book_row_title fl">
+                                     选择场次：
+                                 </div>
+                                 <div class="book_row_table fl">
+                                     <ul class="clear">
+                                         <li class="fl {{$index == paras.planIndex?'active':''}}" ng-repeat="plan in plans" ng-click="switchPlan($index)" ng-show="pf || $index < 10">
+                                             <p ng-bind="plan.name | buildDate:'before'"></p>
+                                             <p ng-bind="plan.name | buildDate:'after'"></p>
+                                         </li>
+                                     </ul>
+                                     <h3 ng-show="plans.length > 10">
+                                         <p ng-show="!pf" ng-click="pf = !pf">查看更多</p>
+                                         <p ng-show="pf" ng-click="pf = !pf">收起</p>
+                                     </h3>
+                                 </div>
+                             </div>
+                             <!--选择场次结束-->
+                             <!--选择价格开始-->
+                             <div class="price clear">
+                                 <div class="book_row_title fl">
+                                     票面价格：
+                                 </div>
+                                 <div class="book_row_table fl">
+                                     <ul ng-repeat="cat in cats">
+                                         <li class="fl {{gory.status?'':'disabled'}} {{$parent.$index == paras.catIndex1 && $index == paras.catIndex2 ?'active':''}}" ng-repeat="gory in cat.children" ng-click="switchCat($parent.$index,$index,gory.status)">
+                                             <p ng-bind="gory.name"></p>
+                                             <p ng-show="gory.status==''" ng-click="pop()">缺货登记</p>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             <!--选择价格结束-->
+                             <!--选择座位开始-->
+                             <div class="seat clear" ng-hide="paras.priceIndex == null">
+                                 <div class="book_row_title fl">
+                                     观看座位：
+                                 </div>
+                                 <div class="book_row_table fl">
+                                     <ul>
+                                         <li class="fl {{$index == paras.priceIndex ?'active':''}}" ng-hide="!price.status"  ng-repeat="price in prices" ng-click="switchPrice($index,price.status)" ng-show="sf || $index < 6">
+                                             <p ng-bind="price.name"></p>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             <!--选择座位结束-->
+                             <!--选择座位开始-->
+                             <div class="count clear" ng-hide="paras.priceIndex == null">
+                                 <div class="book_row_title fl">
+                                     选择数量：
+                                 </div>
+                                 <div class="book_row_table fl">
+                                     <div class="quantitybox">
+                                         <a class="fl" ng-click="subNum()" ng-style="defstyle1">-</a>
+                                         <input type="text" ng-model="num" disabled/>
+                                         <a class="fr" ng-click="addNum()" ng-style="defstyle">+</a>
+                                     </div>
+                                 </div>
+                             </div>
+                             <!--选择座位结束-->
+                         </div>
+                     </div>
+                     <!--提交按钮-->
+                     <div class="create-order">
+                         <div class="order-price fr">
+                             <p ng-bind="total | currency:'￥'"></p>
+                             <div class="create-btn fr" ng-style="gbs" ng-click="createOrder(gf)" ng-bind="gbn"></div>
+                         </div>
+                     </div>
+                 </div>
+                <!--立即购票结束-->
+                <!--演出详情开始-->
+                <div class="good-detail" style="margin-top:40px;">
+                    <div class="title">演出详情</div>
+                    <div class="good-detail-con" ng-bind-html="good.detail"></div>
+                </div>
+                <!--演出详情结束-->
+                <!--订票流程开始-->
+                <div class="flow">
+                    <div class="title">订票流程</div>
+                    <div class="flow-con">
+                        <ul>
+                            <li class="fl">选择演出<i></i></li>
+                            <li class="fl" style="padding-right:34px;">确认订单信息<i></i></li>
+                            <li class="fl" style="padding-right:34px;">选择配送方式<i></i></li>
+                            <li class="fl" style="padding-right:34px;">选择支付方式<i></i></li>
+                            <li class="fl">完成购票<i></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--订票流程结束-->
+                <!--购票提示开始-->
+                <div class="tips">
+                    <div class="title">购票提示</div>
+                    <ul>
+                        <li>1.演出详情仅供参考，具体信息 以主办方公布信息及现场为准，请准时到场以免错过演出；</li>
+                        <li>2.鉴于文体演出票品特殊性，请审慎购买，不支持无理由退换，详见 <span style="color:#FF5A5F;cursor:pointer" ui-sref="main.help({num:'9'})">常见问题－退换票</span>；</li>
+                        <li>3.演出项目儿童均需持票入场，部分演出项目1.2米以下儿童谢绝入场。以具体节目和票根为准；</li>
+                        <li>4.平台所售票品由第三方定价和供应，票价可能高出票面价，并随市场随时波动，平台不实施行价格保护；</li>
+                        <li>5.在您购买支付成功后如遇平台无票，平台进行全额退款并赔付，详见 <span style="color:#FF5A5F;cursor:pointer" ui-sref="main.help({num:'2'})">常见问题－无票赔付</span>；</li>
+                        <li>6.每单购票4张（包含4张）以下保证连坐。</li>
+                    </ul>
+                </div>
+                <!--购票提示结束-->
+                <!--评论开始-->
+                <div class="comment">
+                    <div class="title">票友评论<span>({{totalRe}})</span></div>
+                    <!--写评论开始-->
+                    <div class="comment-box">
+                        <div class="review-create">
+                            <div class="row">
+                                <div class="label">
+                                    请评分：
+                                </div>
+                                <div class="input-control">
+                                    <div id="star">
+                                        <ul>
+                                            <li><a href="javascript:;">1</a></li>
+                                            <li><a href="javascript:;">2</a></li>
+                                            <li><a href="javascript:;">3</a></li>
+                                            <li><a href="javascript:;">4</a></li>
+                                            <li><a href="javascript:;">5</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">
+                                    评价：
+                                </div>
+                                <div class="input-control">
+                                    <textarea placeholder="写下该演出的评价吧..." class="textarea ng-pristine ng-valid" ng-model="conten"></textarea>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom:0px;">
+                                <div class="label">
+                                    上传图片：
+                                </div>
+                                <div class="input-control">
+                                    <div class="btn fl">
+                                        <div class="hint"></div>
+                                        <sapn style="margin-left:10px;margin-top:2px;display:inline-block">上传图片（最多9张）</sapn>
+                                        <input type="file" nv-file-select uploader="uploader" multiple/>
+                                    </div>
+                                    <div class="btn-submit fr" ng-click="submit()">
+                                        发表
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="overflow:visible;">
+                                <div class="thumb-box clear" style="margin-left:90px;overflow:visible">
+                                    <div ng-repeat="item in uploader.queue|limitTo:9" class="thumb">
+                                        <div class="img" ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height:80}"></div>
+                                        <span ng-click="item.remove()"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--写评论结束-->
+                    <!--评论列表开始-->
+                    <div class="comment-list">
+                        <div class="row-coment-list clear" ng-repeat="review in reviews">
+                            <div class="avatar fl">
+                                <img ng-src="{{review.headimgurl}}" alt="" err-src="static/img/userdefault.png">
+                            </div>
+                            <div class="coment-con fl" style="width:714px;">
+                                <p class="name" ng-bind="review.nickname"></p>
+                                <div class="comment-star" ng-style="setPost1(review.star)"></div>
+                                <div class="wz" ng-bind="review.content"></div>
+                                <div class="reply-thumb clear" ng-show="review.attach">
+                                    <img ng-src="{{img}}" ng-repeat="img in review.attach | split" alt="" thumb-box id="review.id">
+                                    <div class="gray {{review.id}}"></div><!-- 遮罩层 -->
+                                    <div class="shouImg">
+                                        <img src="static/img/left.png" alt="" class="prev">
+                                        <img src="static/img/right.png" alt="" class="next">
+                                        <img src="" alt="" width="630" height="388" class="bigimg">
+                                    </div>
+                                </div>
+                                <div class="comment-xq">
+                                    <div class="time fl" ng-bind="review.timeline"></div>
+                                    <div class="funcs fr">
+                                        <div class="reply fl" ng-bind="review.reply" ng-click="GetReply(review.id,$index)"></div>
+                                        <div class="like fl"><i class="{{review.is_praise==0?'':'liked'}}" ng-click="IsPraise(review.id,$index,review.like)"></i><span ng-bind="review.like" class="{{review.is_praise==0?'':'liked'}}"></span></div>
+                                    </div>
+                                </div>
+                                <!--回复列表开始-->
+                                <div class="reply-box" ng-show="review.ShowReply">
+                                    <div class="reply-row clear" ng-repeat="rep in review.indexReply">
+                                        <div class="reply-xq">
+                                            <div class="reply-name fl">{{rep.from_name}}：<span ng-if="rep.to_name">{{'回复'+rep.to_name+'：'}}</span></div>
+                                            <div class="reply-con fl" ng-bind="rep.content" style="margin-top:1px;"></div>
+                                        </div>
+                                        <div class="reply-funcs fr">
+                                            <p><span ng-bind="rep.timeline"></span><a href="" ng-click="FormSumbit(rep.from_id,rep.from_name,$parent.$index)">回复</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--回复框开始-->
+                                <div class="textbox" ng-show="review.ShowReply">
+                                    <div class="textarea">
+                                        <textarea name="" id="" ng-model="review.ReplyFormText" placeholder="{{review.ReplyFormPlaceholder}}"></textarea>
+                                    </div>
+                                    <div class="btn" ng-click="Reply(review.ReplyFormText,review.id,$index)">发表</div>
+                                </div>
+                                <!--回复框结束-->
+                                <!--回复列表结束-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--评论列表结束-->
+                </div>
+                <!--分页开始-->
+                <style>
+                   .pager ul li{
+                       padding:6px 11px!important;
+                   }
+                </style>
+                <div class="pager" style="margin-top:15px;">
+                    <pager page-count="pageCount" current-page="currentPage" on-page-change="onPageChange()"
+                           first-text="首页" next-text="下一页" prev-text="上一页" last-text="尾页">
+                    </pager>
+                </div>
+                <!--分页结束-->
+                <!--评论结束-->
+            </div>
+            <div class="r_con fr">
+                <div class="download">
+                    <img src="static/img/download2.png" alt="">
+                </div>
+                <div class="seatinfo" ng-if="seat">
+                    <div class="title">座位信息</div>
+                    <div class="seatinfo-d" show-seat>
+                        <img ng-src="{{seat}}" alt="">
+                    </div>
+                    <div class="seatmask" close-model>
+                        <div class="seat-box" stop-propagation>
+                            <img ng-src="{{seat}}" alt="" draw-image>
+                        </div>
+                    </div>
+                </div>
+                <div class="serve">
+                    <img src="static/img/serve2.png" alt="">
+                </div>
+                <div class="hot-title">热门推荐</div>
+                <div ng-include="'static/partials/public/hot.html'"></div>
+            </div>
+        </div>
+        <!--演出内容结束-->
+        <!--预约登记提示开始-->
+        <div class="pubtps subscribe subscribe-t" close-model >
+            <div class="pubtps-box" stop-propagation>
+                <div class="con-box">
+                    <div class="subscribe-box">
+                        <p>预约登记</p>
+                        <div class="subscribe-cen">
+                            <p>时间：{{good.date}}</p>
+                            <p><input type="text" ng-model="telphone_no" disabled="disabled"></p>
+                            <p><span>本票品为预约状态，我们将纪录您的信息，在有票时通知您</span></p>
+                            <p><a href="" ng-click="subscribe()">确认</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pubtps-close" close-model></div>
+            </div>
+        </div>
+        <!--预约登记提示结束-->
+        <!--缺货登记提示开始-->
+        <div class="pubtps subscribe pop" close-model >
+            <div class="pubtps-box" stop-propagation>
+                <div class="con-box">
+                    <div class="subscribe-box">
+                        <p>到货提醒</p>
+                        <div class="subscribe-cen">
+                            <p>时间：{{time}}</p>
+                            <p>票面价格：{{price2}}元</p>
+                            <p><input type="text" ng-model="telphone_no" disabled="disabled"></p>
+                            <p><span>本票品为预约状态，我们将纪录您的信息，在有票时通知您</span></p>
+                            <p><a href="" ng-click="submitPop()">确认</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pubtps-close" close-model></div>
+            </div>
+        </div>
+        <!--缺货登记提示结束-->
+
+        <!--loading动画开始-->
+        <div class="img_load_mask">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+        <!--loading动画结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

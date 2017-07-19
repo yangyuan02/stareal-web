@@ -1,0 +1,63 @@
+<div class="myorder" id="myorder" ng-controller="PersonalController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail personal">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div class="tabs">
+                        <ul>
+                            <li><a href="" class="active" ui-sref="my.personal">个人信息</a></li>
+                            <li><a href="" ui-sref="my.address">收货地址</a></li>
+                            <li><a href="" style="width:100px;color: #6B6B6B;background:none;" ui-sref="my.password">密码管理</a></li>
+                        </ul>
+                    </div>
+                    <!--修改手机号-->
+                    <div class="personal-box">
+                        <div class="head">
+                            <img ng-src="{{thumb.imgSrc}}" alt="">
+                            <div class="edit-head">
+                                <span>更换头像</span>
+                                <input type="file" img-upload>
+                            </div>
+                        </div>
+                        <div class="code clear">
+                            <div class="tel-info fl" style="margin-top:6px;">
+                                <p style="margin-top:-3px;">姓名：</p>
+                            </div>
+                            <p class="fl"><input type="text" placeholder="姓名" ng-model="nickname" maxlength="15"></p>
+                        </div>
+                        <div class="code sex clear" style="margin-top:22px;">
+                            <div class="tel-info fl" style="margin-top:6px;">
+                                <p style="margin-top:-3px;">性别：</p>
+                            </div>
+                            <p class="fl" style="margin-top:2px;"><span><a href="" ng-style="defstyle" ng-model="man" ng-click="presonal.setSex1()"></a>男</span><span><a href="" ng-click="presonal.setSex2()" ng-style="defstyle1" ng-model="woman"></a>女</span></p>
+                        </div>
+                        <div class="code clear" style="margin-top:22px;">
+                            <div class="tel-info fl" style="margin-top:6px;">
+                                <p style="margin-top:-3px;">电话：</p>
+                            </div>
+                            <p class="fl"><input type="text" placeholder="电话" ng-model="mobile"></p>
+                        </div>
+                        <div class="code clear" style="margin-top:22px;">
+                            <div class="tel-info fl" style="margin-top:6px;">
+                                <p style="margin-top:-3px;">生日：</p>
+                            </div>
+                            <p class="fl">
+                                <select ng-model="time.year" data-ng-options="t.id as t.name for t in yearNows" style="border:1px solid #e5e5e5;height:24px;"></select>年
+                                <select ng-model="time.month" data-ng-options="t.id as t.name for t in monthNow" style="border:1px solid #e5e5e5;height:24px;"></select>月
+                                <select ng-model="time.day"  data-ng-options="t.id as t.name for t in dayNow" style="border:1px solid #e5e5e5;height:24px;"></select>日
+                            </p>
+                        </div>
+                        <div class="tel-submit" ng-click="presonal.save()">保存</div>
+                    </div>
+                    <!--修改手机结束-->
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

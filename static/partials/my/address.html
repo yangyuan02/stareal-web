@@ -1,0 +1,111 @@
+<div class="myorder" id="myorder" ng-controller="AddressController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail address">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div class="tabs">
+                        <ul>
+                            <li><a href="" ui-sref="my.personal">个人信息</a></li>
+                            <li><a href="" class="active" ui-sref="my.address">收货地址</a></li>
+                            <li><a href="" style="width:100px;color: #6B6B6B;background:none;" ui-sref="my.password">密码管理</a></li>
+                        </ul>
+                    </div>
+                    <!--收货地址开始-->
+                    <div>
+                        <div class="add-list fl" ng-repeat="address in addresses">
+                            <div class="operate clear">
+                                <div class="is_default fl">
+                                    <a href="" class="{{address.is_default==true?'active':''}}" ng-click="setDefault({{address.id}})"></a>
+                                </div>
+                                <div class="edit fr">
+                                    <a href="" edit-add ng-click="edit(address.id)" style="margin-right:10px;">编辑</a>
+                                    <a href="" ng-click="alertmodel(address.id)">删除</a>
+                                </div>
+                                <!--删除提示开始-->
+                                <div class="pubtps {{address.id}}" close-model>
+                                    <div class="pubtps-box" stop-propagation>
+                                        <div class="con-box">
+                                            <div class="img"><img src="static/img/logo-2.png" alt=""></div>
+                                            <div class="tips"><p>善良的你，真的要删除这个地址吗?</p></div>
+                                            <div class="tpsbtns">
+                                                <a href="" class="a1" ng-click="deleteAddress({{address.id}})">确定</a>
+                                                <a href="" class="a2" close-model>再看看</a>
+                                            </div>
+                                        </div>
+                                        <div class="pubtps-close" close-model></div>
+                                    </div>
+                                </div>
+                                <!--删除提示结束-->
+                            </div>
+                            <div class="address-info">
+                                <p>
+                                    <span ng-bind="address.name"></span>
+                                    <span ng-show="address.is_default">默认地址</span>
+                                </p>
+                                <p>
+                                    <span ng-bind="address.province"></span>
+                                    <span ng-bind="address.city"></span>
+                                    <span ng-bind="address.district"></span></p>
+                                <p ng-bind="address.address"></p>
+                                <p ng-bind="address.mobile"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-btn fl" edit-add ng-click="add()">
+                        <p>添加新地址</p>
+                    </div>
+                    <!--收货地址结束-->
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+    </div>
+    <!--地址弹窗开始-->
+    <div id="mask-add" close-model>
+        <div id="address-box" stop-propagation>
+            <div class="con-box">
+                <ul>
+                    <li class="clear">
+                        <p class="fl">收货人：</p>
+                        <p class="fl"><input type="text" ng-model="name" maxlength="15"></p>
+                    </li>
+                    <li class="clear">
+                        <p class="fl">联系电话：</p>
+                        <p class="fl"><input type="text" ng-model="mobile"></p>
+                    </li>
+                    <li class="clear">
+                        <p class="fl">所在区域：</p>
+                        <p class="fl">
+                            <select name="" ng-model="province" ng-options="key as key for (key,value) in division"
+                                    ng-change="city='';district='';" style="border: 1px solid #E5E5E5;height:24px;border-radius: 4px">
+                                <option value="">请选择省</option>
+                            </select>
+                            <select name="" ng-model="city" ng-options="key as key for (key,value) in division[province]"
+                                    ng-change="district='';" style="border: 1px solid #E5E5E5;height:24px;border-radius: 4px">
+                                <option value="">请选择市</option>
+                            </select>
+                            <select name="" ng-model="district" ng-options="value as value for value in division[province][city]" style="border: 1px solid #E5E5E5;height:24px;border-radius: 4px">
+                                <option value="">请选择区</option>
+                            </select>
+                        </p>
+                    </li>
+                    <li class="clear">
+                        <p class="fl">详细地址：</p>
+                        <p class="fl"><input type="text" ng-model="detail"></p>
+                    </li>
+                </ul>
+                <div class="add-save">
+                    <p><a href="" ng-click="default()" ng-style="defstyle" ng-model="isdefault"></a>设置为默认地址</p>
+                    <div class="save-btn" ng-click="save()">保存</div>
+                </div>
+            </div>
+            <div id="close-add" close-model></div>
+        </div>
+    </div>
+    <!--地址弹窗结束-->
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

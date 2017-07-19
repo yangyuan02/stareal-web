@@ -1,0 +1,89 @@
+<div ng-controller="PubBeilyController">
+    <div class="my-beily">
+        <p>我的贝里</p>
+        <p ng-bind="bellyremain"></p>
+    </div>
+    <div class="tabs">
+        <ul>
+            <li><a href="" ui-sref="my.beily" ng-class="{true: 'active',false:''}[beilypage==1]">贝里记录</a></li>
+            <li><a href="" ui-sref="my.rank" ng-class="{true: 'active',false:''}[beilypage==2]">排行榜</a></li>
+            <li><a href="" ui-sref="my.recover" ng-class="{true: 'active',false:''}[beilypage==3]">获取方法</a></li>
+            <li class="fr" style="margin-bottom:10px;"><a href="" id="beily-pay">充值</a></li>
+        </ul>
+    </div>
+    <!--贝里弹窗开始-->
+    <div id="beily-model" close-model style="display:none;">
+        <div id="beily-box" stop-propagation>
+            <div class="beily-con">
+
+                <div class="con-box" ng-show="!show_b">
+                    <div class="pay_erw" style="position:relative">
+                        <img src="static/img/pay.png" alt="" style="margin-left:60px;">
+                        <img src="data:image/png;base64,{{qrCode}}" alt="" width="124" style="position:absolute;left:82px;top:22px;">
+                    </div>
+                </div>
+                <ul ng-show="show_b">
+                    <li class="clear">
+                        <div class="beily-text fl">充值金额：</div>
+                        <div class="beily-input fl">
+                            <p>
+                                <input type="text" ng-model="beily">
+                                <span>元</span>
+                                <sapn>(1元＝100贝里)</sapn>
+                            </p>
+                            <p>充值数量必须为100的倍数，充值范围为5-50元，一天一位用户只能充值一笔</p>
+                        </div>
+                    </li>
+                    <li class="clear">
+                        <div class="beily-text fl" style="margin-top:16px;">支付方式：</div>
+                        <div class="btily-pay fl">
+                            <div class="zfb fl active" ng-class="{active:isActive(1)}" ng-click="checkPay('1')"></div>
+                            <div class="wx fl" ng-class="{active:isActive(2)}" ng-click="checkPay('2')"></div>
+                        </div>
+                    </li>
+                    <li class="clear">
+                        <div class="beily-text fl">实付金额：</div>
+                        <p class="fl" ng-bind="beily|currency:'￥'" style="color:#FF5A5F"></p>
+                    </li>
+                </ul>
+                <div class="beily-btn" ng-show="show_b">
+                    <div class="save-btn" ng-click="PayBeily(beily,a)" style="cursor:pointer">立即付款</div>
+                </div>
+            </div>
+            <div id="close-beil" close-model ng-click="close()"></div>
+        </div>
+    </div>
+    <!--贝里弹窗结束-->
+    <form id="alipaysubmit" name="alipaysubmit" action="https://mapi.alipay.com/gateway.do?_input_charset=utf-8" method="post">
+        <input type="hidden" name="_input_charset" value=""/>
+        <input type="hidden" name="subject" value=""/>
+        <input type="hidden" name="sign" value=""/>
+        <input type="hidden" name="notify_url" value=""/>
+        <input type="hidden" name="body" value=""/>
+        <input type="hidden" name="payment_type" value=""/>
+        <input type="hidden" name="out_trade_no" value=""/>
+        <input type="hidden" name="partner" value=""/>
+        <input type="hidden" name="service" value=""/>
+        <input type="hidden" name="total_fee" value=""/>
+        <input type="hidden" name="return_url" value=""/>
+        <input type="hidden" name="sign_type" value=""/>
+        <input type="hidden" name="seller_id" value=""/>
+        <input type="hidden" name="show_url" value=""/>
+        <!--<input type="hidden" name="it_b_pay" value=""/>-->
+    </form>
+
+    <!--微信弹窗开始-->
+    <div id="mask-pay">
+        <div id="pay-content">
+            <div class="con-box">
+                <div class="pay_erw">
+                    <img src="../static/img/pay.png" alt="" style="margin-top:44px;">
+                    <img src="data:image/png;base64,{{qrCode}}" alt="" width="124">
+                </div>
+            </div>
+            <div id="close-wx" style="position:absolute;right:15px;top:15px;cursor:pointer" close-model></div>
+        </div>
+    </div>
+    <!--微信弹窗结束-->
+
+</div>

@@ -1,0 +1,84 @@
+<div ng-controller="PayCencelController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--步骤条开始-->
+        <div id="crumbs">
+            <ul class="clear">
+                <li><a  href="javascript:;">1.提交订单</a></li>
+                <li><a  href="javascript:;">2.支付订单</a></li>
+                <li><a  href="javascript:;" class="active">3.交易取消</a></li>
+            </ul>
+        </div>
+        <!--步骤条结束-->
+        <!--交易成功开始-->
+        <div class="trade">
+            <div class="trade-info" style="background:none;font-size:20px;color:#6b6b6b">
+                <p>订单已超时，请重新下单</p>
+            </div>
+        </div>
+        <!--交易成功结束-->
+        <!--标题-->
+        <div class="w-title-1190">订单详情</div>
+        <!--订单详情开始-->
+        <div class="pay_list clear">
+            <div class="pay_info fl">
+                <div class="pay-detail fl">
+                    <div class="clear" style="margin-bottom:10px;">
+                        <div class="pay_order fl">
+                            <p class="shang-title">订单编号：</p>
+                        </div>
+                        <div class="pay-row fl" style="margin-top:-5px;">
+                            <p class="fl"><span>170215112402</span></p>
+                            <p class="fl">下单时间：<span>2017-02-22 22：22:22</span></p>
+                        </div>
+                    </div>
+                    <div class="clear" style="margin-top:6px;">
+                        <div class="pay_order fl">
+                            <p class="shang-title">商品信息：</p>
+                        </div>
+                        <div class="pay-row fl" style="margin-top:-4px;">
+                            <p><a href="">【上海站】[A CLASSIC TOUR 张学友.经典]2017世界巡回演唱会</a></p>
+                            <p class="time">2017年10月10日周五20:00</p>
+                            <p class="price">梅赛德斯奔驰文化中心(上海浦东新区世博大道1200号)</p>
+                            <p><span>6</span><span>随机连坐</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!--快递配送-->
+                <!--<div class="people_info fl" style="margin-left:40px;">-->
+                    <!--<ul>-->
+                        <!--<li class="clear"><p class="fl">配送方式：</p><p class="fl">快递配送</p></li>-->
+                        <!--<li class="clear"><p class="fl">个人信息：</p><p class="fl"><sapn>阳园</sapn><span>15927407635</span></p></li>-->
+                        <!--<li class="clear"><p class="fl">收货地址：</p><p class="fl">上海市闵行区新龙路1333弄69号605室</p></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--上门取票-->
+                <!--<div class="people_info fl" style="margin-left:40px;">-->
+                    <!--<ul>-->
+                    <!--<li class="clear"><p class="fl">取票时间：</p><p class="fl">周一至周五 9:00~18:00</p></li>-->
+                    <!--<li class="clear"><p class="fl">取票地址：</p><p class="fl">上海市闵行区新龙路1333弄69号605室</p></li>-->
+                    <!--<li class="clear"><p class="fl">取票说明：</p><p class="fl">凭手机短信取票码取票</p></li>-->
+                    <!--<li class="clear"><p class="fl">客服电话：</p><p class="fl">400-879-8613</p></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--现场取票-->
+                <div class="people_info fl" style="margin-left:40px;">
+                    <ul>
+                        <li class="clear"><p class="fl">取票时间：</p><p class="fl">演出开场前一小时</p></li>
+                        <li class="clear"><p class="fl">取票说明：</p><p class="fl">凭手机短信取票码取票</p></li>
+                        <li class="clear"><p class="fl">取票地址：</p><p class="fl">演出场馆</p></li>
+                        <li class="clear"><p class="fl">联系电话：</p><p class="fl">173 1768 361</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--订单详情结束-->
+        <!--底部按钮开始-->
+        <div class="pay-btns">
+            <div class="order-detail-btn bt-w fl"><a href="">查看订单</a></div>
+            <div class="home-btn bt-w fl"><a href="">返回首页</a></div>
+        </div>
+        <!--底部按钮结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

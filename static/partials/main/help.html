@@ -1,0 +1,134 @@
+<div ng-controller="Help">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190 help" style="margin-top:145px;">
+        <div class="help-top w-title-1190">
+            帮助中心
+        </div>
+        <div class="help-con clear">
+            <div class="help-nav-l fl">
+                <ul>
+                    <li ng-click="cd('1')" ng-class="{active:isActive('1')}"><a href="" ng-class="{active:isActive('1')}">演出状态</a></li>
+                    <li ng-click="cd('2')" ng-class="{active:isActive('2')}"><a href="" ng-class="{active:isActive('2')}">订购方式</a></li>
+                    <li ng-click="cd('3')" ng-class="{active:isActive('3')}"><a href="" ng-class="{active:isActive('3')}">关于价格</a></li>
+                    <li ng-click="cd('4')" ng-class="{active:isActive('4')}"><a href="" ng-class="{active:isActive('4')}">数量与团购</a></li>
+                    <li ng-click="cd('5')" ng-class="{active:isActive('5')}"><a href="" ng-class="{active:isActive('5')}">关于座位</a></li>
+                    <li ng-click="cd('6')" ng-class="{active:isActive('6')}"><a href="" ng-class="{active:isActive('6')}">是否包邮</a></li>
+                    <li ng-click="cd('7')" ng-class="{active:isActive('7')}"><a href="" ng-class="{active:isActive('7')}">支付方式</a></li>
+                    <li ng-click="cd('8')" ng-class="{active:isActive('8')}"><a href="" ng-class="{active:isActive('8')}">配送方式</a></li>
+                    <li ng-click="cd('9')" ng-class="{active:isActive('9')}"><a href="" ng-class="{active:isActive('9')}">退换票</a></li>
+                    <li ng-click="cd('10')" ng-class="{active:isActive('10')}"><a href="" ng-class="{active:isActive('10')}">无票赔付</a></li>
+                    <li ng-click="cd('11')" ng-class="{active:isActive('11')}"><a href="" ng-class="{active:isActive('11')}">退款</a></li>
+                    <li ng-click="cd('12')" ng-class="{active:isActive('12')}"><a href="" ng-class="{active:isActive('12')}">订票提示</a></li>
+                    <li ng-click="cd('13')" ng-class="{active:isActive('13')}"><a href="" ng-class="{active:isActive('13')}">关于我们</a></li>
+                    <li ng-click="cd('14')" ng-class="{active:isActive('14')}"><a href="" ng-class="{active:isActive('14')}">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="help-nav-r fl">
+                <div class="current-title" ng-if="topic == '1'">演出状态</div>
+                <div class="current-con" ng-if="topic == '1'">
+                   <div class="help-state">
+                       <p>什么是预定中？</p>
+                       <p>在演出信息尚未公布完整前，用户可以在平台填写手机号或购买预订劵进行预订，我们将在演出开始预售的第一时间短信通知用户下单购买。</p>
+                   </div>
+                   <div class="help-state">
+                       <p>什么是预售中？</p>
+                       <p>在演出尚未开票前，用户可以通过星锐娱乐票务支付预订。我们将在主办方开票后的第一时间电话联系用户安排配送。我们承诺：如开票后价格上涨，已下单用户无需补差。 演出已经开票，用户可直
+                          接下单</p>
+                       <p style="padding-left:25px;">购买。我们最快当天、最晚在3-5个工作日内会向用户送出门票。</p>
+                   </div>
+                </div>
+                <div class="current-title" ng-if="topic == '2'">订购方式</div>
+                <div class="current-con" ng-if="topic == '2'">
+                    <div class="help-state">
+                        <p>什么是网站订购？</p>
+                        <p>您可以登陆票务官方网站 www.stareal.cn，查找您喜欢的演出并直接进行购买。</p>
+                    </div>
+                    <div class="help-state">
+                        <p>什么是APP订购？</p>
+                        <p>您可以在手机应用商店下载并安装“星锐娱乐”手机App，获得更多精彩的演出信息及购票服务。</p>
+                    </div>
+                    <div class="help-state">
+                        <p>什么是微信订购？</p>
+                        <p>您可以通过微信查找并关注公众号“星锐娱乐”，直接点击公众号菜单中的“马上购票”查找您喜欢的演出进行购买。</p>
+                    </div>
+                </div>
+                <div class="current-title" ng-if="topic == '3'">关于价格</div>
+                <div class="current-con" ng-if="topic == '3'">
+                    <p>星锐娱乐票务所售票品由第三方定价与供应，平台本身不直接对票品定价，我们通过“多渠道供票竞价机制”，自动对接票价最低的票源，因此大部分演出有折扣，售价低于票面；少部分热门演出价格高于票面，但
+                        能让用户买到票。</p>
+                </div>
+                <div class="current-title" ng-if="topic == '4'">数量与团购</div>
+                <div class="current-con" ng-if="topic == '4'">
+                    <p>为了杜绝个人利用星锐娱乐低价票进行抢购倒卖的现象，星锐娱乐线上购票实行2张至6张的限购（详见具体演出详情与票面备注）。对于一次订购6张以上的团购用户，您可以直接通过星锐娱乐客服热线
+                        400-879-8613，由专业客服提供咨询。若系统发现您在短时间内快速购买巨量订单，系统将自动判定为刷单行为，自行对购买的订单做取消处理。本条解释权由星锐娱乐所有。</p>
+                </div>
+                <div class="current-title" ng-if="topic == '5'">关于座位</div>
+                <div class="current-con" ng-if="topic == '5'">
+                    <div class="help-state">
+                        <p>可以选座吗？</p>
+                        <p>星锐娱乐票务的部分演出提供座位选项，用户可以直接在购买页进行选择座位购买。</p>
+                    </div>
+                </div>
+                <div class="current-title" ng-if="topic == '6'">是否包邮</div>
+                <div class="current-con" ng-if="topic == '6'">
+                    <div class="help-state">
+                        <p>是否包邮？</p>
+                        <p>抱歉，如果您不是团购客户（一次购票6张以上），快递费按平台统一标准收取(顺丰快递23元)。如您是团购客户，可致电星锐娱乐客服热线400-879-8613进行相关咨询。</p>
+                    </div>
+                </div>
+                <div class="current-title" ng-if="topic == '7'">支付方式</div>
+                <div class="current-con" ng-if="topic == '7'">
+                    <p style="color:#000;">支付宝支付</p>
+                    <p style="margin:10px 0px 40px 0px;">星锐娱乐票务网站及APP购票支持支付宝支付。</p>
+                    <p style="color:#000;">微信支付</p>
+                    <p style="margin-top:10px;">星锐娱乐票务微信公众号、网站及APP购票均支持微信支付。</p>
+                </div>
+                <div class="current-title" ng-if="topic == '8'">配送方式</div>
+                <div class="current-con" ng-if="topic == '8'">
+                    <p style="color:#000;">快递</p>
+                    <p style="margin:10px 0px 40px 0px;">用户在星锐娱乐票务购票时可选择普通快递或顺丰快递。快递发出后，用户可在订单详情中查看物流信息。提交订单时请仔细确认收货人信息，避免因个人疏失快递无法及时送达。</p>
+                    <p style="color:#000;">上门自取</p>
+                    <p style="margin-top:10px;">如用户选择上门自取，用户可凭短信及订单号于每周一至周五（9：00至下午18：00）到星锐娱乐票务（地址：上海市闵行区新龙路1333弄69号605室）取票。</p>
+                </div>
+                <div class="current-title" ng-if="topic == '9'">退换票</div>
+                <div class="current-con" ng-if="topic == '9'">
+                    <div class="help-state">
+                        <p>下单后可以退换票么？</p>
+                        <p>销售中的演出，鉴于文体演出票品特殊性（具有时效性、唯一性等特征），一旦票品售出概不支持无理由退换，请您在购买时务必仔细核对您的订单信息并审慎下单。（因不可抗力因素导致演出取消或延期
+                            </p>
+                        <p style="padding-left:25px;">除外）。</p>
+                    </div>
+                </div>
+                <div class="current-title" ng-if="topic == '10'">无票赔付</div>
+                <div class="current-con" ng-if="topic == '10'">
+                    <p>由于票务市场的特殊性，如在订单配票时票品售磬无法配票，我们将第一时间联系用户办理订单全退并补偿一张价值20元的现金抵用券。</p>
+                </div>
+                <div class="current-title" ng-if="topic == '11'">退款</div>
+                <div class="current-con" ng-if="topic == '11'">
+                    <p>由于票务市场的特殊性，如在订单配票时票品售磬无法配票，我们将第一时间联系用户办理订单全退并补偿一张价值20元的现金抵用券。</p>
+                </div>
+                <div class="current-title" ng-if="topic == '12'">订票提示</div>
+                <div class="current-con" ng-if="topic == '12'">
+                    <p style="line-height:26px;">1. 演出详情仅供参考，具体信息以主办方公布信息及现场为准，请准时到场以免错过演出。</p>
+                    <p style="line-height:26px;">2. 鉴于文体演出票品特殊性，请审慎购买，不支持无理由退换，详见 退换票。</p>
+                    <p style="line-height:26px;">3. 演出项目儿童均需持票入场，部分演出项目1.2米以下儿童谢绝入场。以具体节目和票根为准。</p>
+                    <p style="line-height:26px;">4. 平台所售票品由第三方定价与供应，票价可能高出票面价，并随市场随时波动，平台不施行价格保护。</p>
+                    <p style="line-height:26px;">5. 在您购买支付成功后如遇平台无票，平台进行全额退款并赔付，详见 无票赔付。</p>
+                </div>
+                <div class="current-title" ng-if="topic == '13'">关于我们</div>
+                <div class="current-con" ng-if="topic == '13'">
+                    <p>星锐娱乐票务隶属上海星鱼文化传播有限公司，是一家专注于文体演出的官方票务交易平台。通过整合各个演出主办与大型票务的票源，去除中间环节，向用户提供第一手演出票。不遗余力地为用户打造一个“低价、快捷、真票、想看就能买得到”的票务平台。星锐娱乐票务采用“多渠道供票竞价机制”，自动对接票价最低的票源，90%以上的演出均有折扣，让消费者实实在在享受实惠。同时，针对热门稀缺演出，星锐娱乐票务推出星锐娱乐百分百有票保障，确保用户下单就肯定有票。</p>
+                    <p>自成立已来，平台已累计发展用户数超50万，已有上百家演出主办方、票务总代与大型票务公司与我们签约票务代理合作。</p>
+                </div>
+                <div class="current-title" ng-if="topic == '14'">联系我们</div>
+                <div class="current-con" ng-if="topic == '14'">
+                    <p style="line-height:26px;">1.客服电话：400-879-8613</p>
+                    <p style="line-height:26px;">2.服务时间：09：00-18：00(周一至周五)</p>
+                    <p style="line-height:26px;">3.投诉电话：021-54151377</p>
+                    <p style="line-height:26px;">4.运营部地址：上海市闵行区新龙路1333弄69号605室</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

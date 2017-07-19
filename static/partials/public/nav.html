@@ -1,0 +1,18 @@
+<div class="nav-bg" ng-controller="PublicController" style="position:relative;">
+    <div class="w clearfix">
+        <div class="nav-menu pull-left" ng-mouseover="show()" ng-mouseleave="hide()">
+            <ul class="nav-menu-show">
+                <i></i>
+                <a>全部演出分类</a>
+            </ul>
+            <ul class="nav-menu-hide" ng-if="menu_show">
+                <li ng-repeat="nav in navs">
+                    <a ui-sref="main.list({kind:{{nav.type}},sort:'hot',direct:'desc',keyword:''})">{{nav.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-link pull-left" >
+            <a ui-sref="main.detail({good_id:{{good.id}}})" ng-repeat="good in hots | limitTo : 2">{{good.title}}</a>
+        </div>
+    </div>
+</div>

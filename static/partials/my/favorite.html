@@ -1,0 +1,48 @@
+<div class="myorder" id="myorder" ng-controller="FavoriteController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail list-con favor">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div class="tabs">
+                        <ul>
+                            <li><a href="" style="text-align:left;background:none;">我的收藏</a></li>
+                        </ul>
+                    </div>
+                    <div class="exp-info">
+                        <div class="list-l fl">
+                            <ul>
+                                <li ng-repeat="favor in favors">
+                                    <div class="good-l fl" ui-sref="main.detail({good_id:{{favor.id}}})">
+                                        <img ng-src="{{favor.thumb}}" alt="">
+                                    </div>
+                                    <div class="good-r fl">
+                                        <p class="title"><a href="" ng-bind="favor.title"></a></p>
+                                        <p class="time" ng-bind="favor.date"></p>
+                                        <p class="address" ng-bind="favor.site_title"></p>
+                                        <p class="price"><span>￥{{favor.price}}</span>起</p>
+                                        <div class="status" ng-style="btnSetColor(favor.state)" ng-bind="btnText(favor.state)"></div>
+                                    </div>
+                                    <div class="buy fl" ui-sref="main.detail({good_id:{{favor.id}}})">立即购买</div>
+                                    <div class="cencel-favor fr"><a href="" ng-click="unFollow({{favor.id}})">取消收藏</a></div>
+                                </li>
+                            </ul>
+                            <!--分页开始-->
+                            <div class="pager">
+                                <pager page-count="pageCount" current-page="currentPage" on-page-change="onPageChange()"
+                                       first-text="首页" next-text="下一页" prev-text="上一页" last-text="尾页">
+                                </pager>
+                            </div>
+                            <!--分页结束-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

@@ -1,0 +1,436 @@
+<div ng-controller="IndexController" id="home" style="height:100%">
+    <!--首页头部start-->
+    <div class="Indextop">
+        <div class="content">
+            <div class="company fl">
+                <!--<span>星锐娱乐</span>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                <!--<span>www.stareal.cn</span>-->
+            </div>
+            <div class="tel fr">
+                <!--<span>手机星锐娱乐&nbsp;|&nbsp;客服电话:400-879-8613</span>-->
+            </div>
+        </div>
+    </div>
+    <!--首页头部end-->
+    <!--轮播图开始-->
+    <div class="banner" id="b04">
+        <ul class="clear">
+            <!--<li ng-repeat="slide in advs"><img src="/static/img/banner1.png" alt="" width="100%" ui-sref="main.detail({good_id:{{slide.id}}})"></li>-->
+            <li ng-repeat="slide in advs"><img ng-src="{{slide.thumb}}" alt="" width="100%" ui-sref="main.detail({good_id:{{slide.id}}})"></li>
+        </ul>
+        <a href="javascript:void(0);" class="unslider-arrow04 prev"></a>
+        <a href="javascript:void(0);" class="unslider-arrow04 next"></a>
+    </div>
+    <div id="carousel-demo" class="carousel-demo">
+        <!--导航栏开始-->
+        <div class="home-bg" style="width:100%;position: fixed;height:49px;top:30px;z-index:999">
+            <!--<img src="/static/img/logo111.png" alt="">-->
+            <div class="head gradient">
+                <div class="logo_11 fl"><img src="/static/img/logo_777.png" alt="" style="margin-top:10px;"></div>
+                <div class="nav fl">
+                    <ul>
+                        <li ng-repeat="nav in navs">
+                            <a ui-sref="main.list({kind:{{nav.type}}-1,sort:'hot',direct:'desc',keyword:''})">{{nav.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sreach fl">
+                    <input type="text" id="js_search_val" placeholder="搜索明星、演出、场馆" ng-model="keyword" ng-keydown="searchenter1(event)" ng-keyup="change(keyword)">
+                    <div class="sreach_btn" ng-click="search()"></div>
+                    <ul id="SearchList" ng-if="search_show">
+                        <li ng-repeat="attr in arr"><a ui-sref="main.list({kind:'all',sort:'hot',direct:'desc',keyword:'{{attr.title|trim}}'})">{{attr.title}}</a></li>
+                    </ul>
+                </div>
+                <div class="login fl" ng-show="!tel">
+                    <a href="" class="show-login">登录</a>
+                </div>
+                <div class="dropdown-toggle" ng-show="!!tel" ng-mouseover="show()" ng-mouseleave="hide()">
+                    <a class="toggle-title">{{tel}}</a>
+                    <div class="toggle-menu clear" ng-if="menu_show">
+                        <ul>
+                            <li><a ui-sref="my.orders">我的订单</a></li>
+                            <li><a ui-sref="my.beily">我的贝里</a></li>
+                            <li><a ui-sref="my.member">我的会员</a></li>
+                            <li><a ui-sref="my.favorite">我的收藏</a></li>
+                            <li><a ui-sref="my.receive">我的评论</a></li>
+                            <li><a ui-sref="my.coupon">我的卡劵</a></li>
+                            <li><a ui-sref="my.personal">账户设置</a></li>
+                            <li><a href="oauth/logout" ng-click="logout()">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--导航栏结束-->
+    </div>
+    <!--轮播图结束-->
+    <!--白色导航栏开始-->
+    <div class="white_nav">
+        <div class="head gradient">
+            <div class="logo_11 fl"><img src="/static/img/logo_123.png" alt="" style="margin-top:10px;"></div>
+            <div class="nav fl">
+                <ul>
+                    <li ng-repeat="nav in navs">
+                        <a ui-sref="main.list({kind:{{nav.type}}-1,sort:'hot',direct:'desc',keyword:''})">{{nav.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sreach fl">
+                <input type="text" id="js_search_val" placeholder="搜索明星、演出、场馆" ng-model="keyword" ng-keydown="searchenter1(event)" ng-keyup="change(keyword)">
+                <div class="sreach_btn" ng-click="search()"></div>
+                <ul id="SearchList" ng-if="search_show">
+                    <li ng-repeat="attr in arr"><a ui-sref="main.list({kind:'all',sort:'hot',direct:'desc',keyword:'{{attr.title|trim}}'})">{{attr.title}}</a></li>
+                </ul>
+            </div>
+            <div class="login fl" ng-show="!tel">
+                <a href="" class="show-login">登录</a>
+            </div>
+            <div class="dropdown-toggle" ng-show="!!tel" ng-show="!!tel" ng-mouseover="show()" ng-mouseleave="hide()">
+                <a class="toggle-title">{{tel}}</a>
+                <div class="toggle-menu clear" ng-if="menu_show">
+                    <ul>
+                        <li><a ui-sref="my.orders">我的订单</a></li>
+                        <li><a ui-sref="my.beily">我的贝里</a></li>
+                        <li><a ui-sref="my.member">我的会员</a></li>
+                        <li><a ui-sref="my.favorite">我的收藏</a></li>
+                        <li><a ui-sref="my.receive">我的评论</a></li>
+                        <li><a ui-sref="my.coupon">我的卡劵</a></li>
+                        <li><a ui-sref="my.personal">账户设置</a></li>
+                        <li><a href="oauth/logout" ng-click="logout()">退出登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--白色导航结束-->
+    <!--首页内容开始-->
+    <div class="Indexcont">
+        <div class="section-1">
+            <div class="column i-column"></div>
+            <!--热门推荐-->
+            <div class="hot clear">
+                <div class="hot_list fl">
+                    <ul>
+                        <li class="fl" ng-repeat="lat in latest|limitTo : 8" ui-sref="main.detail({good_id:lat.id})">
+                            <div class="thum">
+                                <img ng-src="{{lat.thumb}}" alt="">
+                                <div class="mask">
+                                    <div class="seckill-btn" ui-sref="main.detail({good_id:lat.id})">立即购票</div>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <p class="title"><a href="" ng-bind="lat.title" ui-sref="main.detail({good_id:lat.id})"></a></p>
+                                <p class="time" ng-bind="lat.date"></p>
+                                <p class="price"><span>￥{{lat.price}}</span>起</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sign fr">
+                    <div class="time">
+                        <i></i>
+                        <p ng-bind="nowTime"></p>
+                        <p ng-if="!showInfo">已累计签到{{days}}天</p>
+                        <p ng-if="showInfo">每日签到 领取贝里</p>
+                        <p ng-if="showInfo" class="sign-q" sign-show ng-click="sign()">签到</p>
+                        <p ng-if="!showInfo" class="active sign-q" sign-show>已签到</p>
+                        <div id="scs_rl"></div>
+                    </div>
+                    <div class="download" style="margin-top:12px;">
+                        <img src="static/img/download.png" alt="">
+                    </div>
+                    <div class="serve">
+                        <img src="static/img/serve.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!--广告-->
+            <div class="advertisement" ng-show="webBanner">
+                <img ng-src="{{webBanner}}" alt="" ui-sref="main.detail({good_id:webBannerId})">
+            </div>
+        </div>
+        <div class="section-2">
+            <!--折扣票-->
+            <div class="column i-rebate"></div>
+            <div class="hot rebate">
+                <div class="scroll">
+                    <ul>
+                        <li class="fl" ng-repeat="dis in discount" ui-sref="main.detail({good_id:dis.id})" on-list-finish-render="latestFinishRender">
+                            <div class="thum">
+                                <img ng-src="{{dis.thumb}}" alt="">
+                            </div>
+                            <div class="info">
+                                <p class="title"><a href="" ng-bind="dis.title"></a></p>
+                                <p class="time" ng-bind="dis.date"></p>
+                                <p class="price"><span>￥{{dis.price}}</span>起</p>
+                            </div>
+                            <div class="coupon" ng-bind="dis.coupon_label" ng-if="dis.coupon_label"></div>
+                        </li>
+                    </ul>
+                </div>
+                <a class="btn_l"><i></i></a>
+                <a class="btn_r"><i></i></a>
+                <!--<div style="clear:both"></div>-->
+            </div>
+        </div>
+        <div class="section-3" style="height:730px;">
+            <!--演唱会-->
+            <div class="column i-performance"></div>
+            <div class="hot performance">
+                <ul class="clear performance-no">
+                    <li class="fl mg" ng-repeat="per in performance.slice(0,6)|limitTo : 10" ui-sref="main.detail({good_id:per.id})" style="margin-right:38px;">
+                            <div class="thum" ui-sref="main.detail({good_id:per.id})">
+                                <img ng-src="{{per.thumb}}" alt="">
+                                <div class="mask">
+                                    <div class="seckill-btn" ui-sref="main.detail({good_id:per.id})">立即购票</div>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <p class="title"><a href="" ng-bind="per.title" ui-sref="main.detail({good_id:per.id})"></a></p>
+                                <p class="time" ng-bind="per.date"></p>
+                                <p class="price"><span>￥{{per.price}}</span>起</p>
+                            </div>
+                    </li>
+                </ul>
+                <ul class="clear performance-no">
+                    <li class="fl mg" ng-repeat="per in performance.slice(6,10)|limitTo : 10" ui-sref="main.detail({good_id:per.id})" style="margin-right:38px;">
+                        <div class="thum" ui-sref="main.detail({good_id:per.id})">
+                            <img ng-src="{{per.thumb}}" alt="">
+                            <div class="mask">
+                                <div class="seckill-btn" ui-sref="main.detail({good_id:per.id})">立即购票</div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <p class="title"><a href="" ng-bind="per.title" ui-sref="main.detail({good_id:per.id})"></a></p>
+                            <p class="time" ng-bind="per.date"></p>
+                            <p class="price"><span>￥{{per.price}}</span>起</p>
+                        </div>
+                    </li>
+                    <div class="performance-more" ui-sref="main.list({kind:0,sort:'hot',direct:'desc',keyword:''})" style="float:right">
+                        <div class="more_scale">
+                            <img src="static/img/more.png" alt="">
+                            <div class="block1"></div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="section-4 public" style="height:600px;">
+            <!--话剧-->
+            <div class="column i-drama"></div>
+            <div class="clear">
+                <div class="l_good fl">
+                    <div class="frist_good" ui-sref="main.detail({good_id:firstDranma.id})">
+                        <img ng-src="{{firstDranma.thumb}}" alt="">
+                        <div class="frist_wx">
+                            <p ng-bind="firstDranma.title" class="hd1"></p>
+                            <p ng-bind="firstDranma.date"></p>
+                            <p>¥{{firstDranma.price}}起</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="r_good fr">
+                    <div class="list_good">
+                        <ul>
+                            <li class="fl" ng-repeat="dra in drama|limitTo : 6" ui-sref="main.detail({good_id:dra.id})">
+                                <div class="thum fl" ui-sref="main.detail({good_id:dra.id})">
+                                    <img ng-src="{{dra.thumb}}" alt="">
+                                </div>
+                                <div class="info fl">
+                                    <p class="title"><a href="" ng-bind="dra.title" ui-sref="main.detail({good_id:dra.id})"></a></p>
+                                    <p class="time" ng-bind="dra.date"></p>
+                                    <p class="price"><span>￥{{dra.price}}</span>起</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="more_btn">
+                <a ui-sref="main.list({kind:1,sort:'hot',direct:'desc',keyword:''})">查看全部</a>
+                <span ui-sref="main.list({kind:1,sort:'hot',direct:'desc',keyword:''})">VIEW ALL</span>
+            </div>
+        </div>
+        <div class="section-3 clear">
+            <!--体育赛事-->
+            <div class="opern fl">
+                <div class="opern-title clear">
+                    <p class="fl">体育赛事</p>
+                    <p class="fr" ui-sref="main.list({kind:2,sort:'hot',direct:'desc',keyword:''})">查看全部<i></i></p>
+                </div>
+                <div class="opern-list clear">
+                    <div class="frist_good" ng-repeat="spor in sports.slice(0,2)" ui-sref="main.detail({good_id:spor.id})" show-text>
+                        <img ng-src="{{spor.thumb}}" alt="">
+                        <div class="frist_wx">
+                            <p ng-bind="spor.title" class="hd1"></p>
+                            <p ng-bind="spor.date"></p>
+                            <p>¥{{spor.price}}起</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="opern fr">
+                <div class="opern-title clear">
+                    <p class="fl">展览景点</p>
+                    <p class="fr" ui-sref="main.list({kind:3,sort:'hot',direct:'desc',keyword:''})">查看全部<i></i></p>
+                </div>
+                <div class="opern-list clear">
+                    <div class="frist_good" ui-sref="main.detail({good_id:exh.id})" ng-repeat="exh in exhibition.slice(0,2)" show-text>
+                        <img ng-src="{{exh.thumb}}" alt="">
+                        <div class="frist_wx">
+                            <p ng-bind="exh.title" class="hd1"></p>
+                            <p ng-bind="exh.date"></p>
+                            <p>¥{{exh.price}}起</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-3" style="height:730px;">
+            <!--亲子-->
+            <div class="column i-campaign"></div>
+            <div class="hot performance">
+                <ul class="clear performance-no">
+                    <li class="fl mg" ng-repeat="cam in campaign.slice(0,6) |limitTo :10" ui-sref="main.detail({good_id:cam.id})" style="margin-right:38px;">
+                        <div class="thum" ui-sref="main.detail({good_id:cam.id})">
+                            <img ng-src="{{cam.thumb}}" alt="">
+                            <div class="mask">
+                                <div class="seckill-btn" ui-sref="main.detail({good_id:cam.id})">立即购票</div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <p class="title"><a href="" ng-bind="cam.title" ui-sref="main.detail({good_id:cam.id})"></a></p>
+                            <p class="time" ng-bind="cam.date"></p>
+                            <p class="price"><span>￥{{cam.price}}</span>起</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="clear performance-no">
+                    <li class="fl mg" ng-repeat="cam in campaign.slice(6,10) |limitTo :10" ui-sref="main.detail({good_id:cam.id})" style="margin-right:38px;">
+                        <div class="thum" ui-sref="main.detail({good_id:cam.id})">
+                            <img ng-src="{{cam.thumb}}" alt="">
+                            <div class="mask">
+                                <div class="seckill-btn" ui-sref="main.detail({good_id:cam.id})">立即购票</div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <p class="title"><a href="" ng-bind="cam.title" ui-sref="main.detail({good_id:cam.id})"></a></p>
+                            <p class="time" ng-bind="cam.date"></p>
+                            <p class="price"><span>￥{{cam.price}}</span>起</p>
+                        </div>
+                    </li>
+                    <div class="performance-more" ui-sref="main.list({kind:4,sort:'hot',direct:'desc',keyword:''})" style="float:right">
+                        <div class="more_scale">
+                            <img src="static/img/more.png" alt="">
+                            <div class="block1"></div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="section-4 public" style="height:560px;">
+            <!--音乐舞蹈-->
+            <div class="column i-locale"></div>
+            <div class="clear">
+                <div class="l_good fl">
+                    <div class="frist_good">
+                        <img ng-src="{{firstMusic.thumb}}" alt="" ui-sref="main.detail({good_id:firstMusic.id})">
+                        <div class="frist_wx">
+                            <p ng-bind="firstMusic.title" class="hd1"></p>
+                            <p ng-bind="firstMusic.date"></p>
+                            <p>¥{{firstMusic.price}}起</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="r_good fr">
+                    <div class="list_good">
+                        <ul>
+                            <li class="fl" ng-repeat="mus in music| limitTo : 6" ui-sref="main.detail({good_id:mus.id})">
+                                <div class="thum fl" ui-sref="main.detail({good_id:mus.id})">
+                                    <img ng-src="{{mus.thumb}}" alt="">
+                                </div>
+                                <div class="info fl">
+                                    <p class="title"><a href="" ng-bind="mus.title" ui-sref="main.detail({good_id:mus.id})"></a></p>
+                                    <p class="time" ng-bind="mus.date"></p>
+                                    <p class="price"><span>￥{{mus.price}}</span>起</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="more_btn">
+                <a ui-sref="main.list({kind:8,sort:'hot',direct:'desc',keyword:''})">查看全部</a>
+                <span ui-sref="main.list({kind:8,sort:'hot',direct:'desc',keyword:''})">VIEW ALL</span>
+            </div>
+        </div>
+        <div class="section-3" style="height:730px;">
+            <!--曲艺杂谈-->
+            <div class="column i-music"></div>
+            <div class="hot performance">
+                <ul class="clear performance-no">
+                    <li class="fl mg" ng-repeat="loca in locale.slice(0,6)|limitTo :10" ui-sref="main.detail({good_id:loca.id})" style="margin-right:38px;">
+                        <div class="thum" ui-sref="main.detail({good_id:loca.id})">
+                            <img ng-src="{{loca.thumb}}" alt="">
+                            <div class="mask">
+                                <div class="seckill-btn" ui-sref="main.detail({good_id:loca.id})">立即购票</div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <p class="title"><a href="" ng-bind="loca.title" ui-sref="main.detail({good_id:loca.id})"></a></p>
+                            <p class="time" ng-bind="loca.date"></p>
+                            <p class="price"><span>￥{{loca.price}}</span>起</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="clear performance-no">
+                    <li class="fl mg" ng-repeat="loca in locale.slice(6,10)|limitTo :10" ui-sref="main.detail({good_id:loca.id})" style="margin-right:38px;">
+                        <div class="thum" ui-sref="main.detail({good_id:loca.id})">
+                            <img ng-src="{{loca.thumb}}" alt="">
+                            <div class="mask">
+                                <div class="seckill-btn" ui-sref="main.detail({good_id:loca.id})">立即购票</div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <p class="title"><a href="" ng-bind="loca.title" ui-sref="main.detail({good_id:loca.id})"></a></p>
+                            <p class="time" ng-bind="loca.date"></p>
+                            <p class="price"><span>￥{{loca.price}}</span>起</p>
+                        </div>
+                    </li>
+                    <div class="performance-more" ui-sref="main.list({kind:5,sort:'hot',direct:'desc',keyword:''})" style="float:right">
+                        <div class="more_scale">
+                            <img src="static/img/more.png" alt="">
+                            <div class="block1"></div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--首页内容结束-->
+    <!--登录弹窗开始-->
+    <div id="mask" close-model>
+        <div id="content" stop-propagation>
+            <div class="con-box">
+                <div class="login">
+                    <img src="static/img/logo.png" alt="">
+                </div>
+                <p>欢迎登录星锐娱乐</p>
+                <p>无需注册 快捷登录</p>
+                <div class="tel"><input type="text" placeholder="手机号" ng-model="telphone_no"></div>
+                <div class="code">
+                    <div class="code-input fl" style="width:134px;">
+                        <input type="text" placeholder="手机验证码" style="width:134px;" ng-model="code">
+                    </div>
+                    <div class="code-btn fr" ng-click="sendCode()" ng-bind="paracont"></div>
+                </div>
+                <div class="login-btn" ng-click="login()">登录</div>
+            </div>
+            <div id="close" close-model></div>
+        </div>
+    </div>
+    <!--登录弹窗结束-->
+    <!--底部开始-->
+    <div ng-include="'static/partials/public/footer.html'"></div>
+    <!--底部结束-->
+</div>

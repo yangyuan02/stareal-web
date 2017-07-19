@@ -1,0 +1,35 @@
+<div class="settings" id="settings" ng-controller="SettingsFeedbackController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div ng-include="'static/partials/public/clearfix.html'"></div>
+    <div ng-include="'static/partials/public/nav.html'"></div>
+    <div class="main-height" style="min-height:2000px">
+        <!-- ngView: -->
+        <div ng-view="" class="ng-scope">
+            <style type="text/css" class="ng-scope">.main-height{ min-height:300px !important; }</style>
+            <div class="w clearfix ng-scope">
+                <div class="single_l" style="margin-right:38px;">
+                    <ul class="single_l_title mt30">帮助中心</ul>
+                    <ul class="single_menu mt20">
+
+                        <li uib-btn-radio="topic.code" ng-click="cd('fankui')" class="ng-pristine ng-untouched ng-valid ng-scope">
+                            <i>
+                            </i>
+                            <a class="ng-binding" style="background:#F1B528 ;color:#0B0909;">意见反馈</a></li>
+                    </ul>
+                </div>
+                <!--去除掉-->
+
+                <!--去除掉-->
+
+                    <ul class="single_r_title" style="border-bottom:none">意见反馈</ul>
+                    <ul class="single_fankui" style="margin-left:215px;">
+                        <li><textarea id="ta1" placeholder="用力的吐槽我吧" ng-model="remark" maxlength="200" class="ng-pristine ng-untouched ng-valid ng-valid-maxlength"></textarea></li>
+                        <!--<li style="text-align:right">还可以输入<span id="js_fankui_zf" class="ng-binding">200</span>个字</li>-->
+                        <li><a id="js_fankui_btn" ng-click="save()">提 交</a></li>
+                    </ul>
+
+            </div>
+        </div>
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

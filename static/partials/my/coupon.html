@@ -1,0 +1,48 @@
+<div class="myorder" id="myorder" ng-controller="CouponController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail coupon">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div class="tabs">
+                        <ul>
+                            <li class="fl"><a href="" ng-class="{active:isActive('1')}" ng-click="filter(0,1)">未使用</a></li>
+                            <li class="fl"><a href="" ng-class="{active:isActive('2')}" style="width:100px;color: #6B6B6B;background:none;" ng-click="filter(2,2)">已过期</a></li>
+                            <div class="add_cou fr">
+                                <div class="cou_inp fl">
+                                    <input type="text" placeholder="请输入兑换码" ng-model="couponNo">
+                                </div>
+                                <div class="add_cou_bts fl" ng-click="addCoupon()">添加优惠劵</div>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="coupon-info">
+                        <ul class="clear">
+                            <li ng-repeat="cou in coupons" ng-class="{active:isActive('2')}">
+                                <div class="coupon-price fl">
+                                    <p ng-show="cou.type == '折扣'">{{cou.ratio1}}<span>折</span></p>
+                                    <p ng-show="cou.type == '满减'"><span>¥</span>{{cou.ratio1}}</p>
+                                </div>
+                                <div class="coupon-use fl">
+                                    <p ng-bind="cou.remark"></p>
+                                    <p>有效期：{{cou.expire_date}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="none" ng-if="coupons==0">暂无优惠券</div>
+                        <div class="pager" style="margin-top:15px;">
+                            <pager page-count="pageCount" current-page="currentPage" on-page-change="onPageChange(sort)"
+                                   first-text="首页" next-text="下一页" prev-text="上一页" last-text="尾页">
+                            </pager>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

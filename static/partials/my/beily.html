@@ -1,0 +1,46 @@
+<div class="myorder" id="myorder" ng-controller="BeilyController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail beily">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div ng-include="'static/partials/public/beily-pub.html'"></div>
+                    <div class="table-header">
+                        <ul>
+                            <li>来源／用途</li>
+                            <li>贝里变化</li>
+                            <li>日期</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="order-info clear" ng-repeat="rank in ranks" style="border-bottom:1px solid #e5e5e5;margin-top:0px;">
+                            <ul>
+                                <li style="height:40px;line-height:40px;padding:10px 0px;">
+                                    <p style="background:none;width:100px;" ng-bind="rank.src"></p>
+                                </li>
+                                <li style="height:40px;line-height:40px;padding:10px 0px;">
+                                    <p ng-bind="rank.value"></p>
+                                </li>
+                                <li style="height:40px;line-height:40px;padding:10px 0px;">
+                                    <p ng-bind="rank.timeline"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+        <!--分页开始-->
+        <div class="pager" style="margin-top:15px;">
+            <pager page-count="pageCount" current-page="currentPage" on-page-change="onPageChange()"
+                   first-text="首页" next-text="下一页" prev-text="上一页" last-text="尾页">
+            </pager>
+        </div>
+        <!--分页结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

@@ -1,0 +1,67 @@
+/*交易成功*/
+.trade{
+    display:table;
+    margin:20px auto;
+    font-size: 20px;
+    color: #6B6B6B;
+    margin-top:30px;
+}
+.trade .trade-info{
+    padding-left:70px;
+    background:url("../img/succee.png") no-repeat left;
+}
+.trade .trade-info p:first-child{
+    margin-bottom:10px;
+}
+.trade .trade-info p:first-child span{
+    color:#FF2450;
+}
+/*订单详情*/
+.pay_list .pay_info .pay-detail .pay-row p{
+    line-height:26px;
+}
+.pay_list .pay_info .pay-detail .pay-row p a{
+    color:#6B6B6B;
+    font-size:16px;
+}
+.pay_list .pay_info .pay-detail .pay-row{
+    width:448px;
+}
+.pay_list .pay_info .people_info ul li{
+    line-height:26px;
+}
+.pay_list .pay_price ul li{
+    line-height:34px;
+    font-size:18px;
+    width:300px;
+}
+.pay_list .pay_price ul li p:first-child{
+    text-align:right;
+    width:150px;
+}
+.pay_list .pay_price ul li p:last-child{
+    text-align:right;
+}
+.pay_list .pay_price ul li:last-child p:last-child{
+    color:#FF2450;
+}
+/*按钮*/
+.pay-btns{
+    display:table;
+    margin:0 auto;
+    margin-top:66px;
+}
+.pay-btns .order-detail-btn{
+    margin-right:40px
+}
+.pay-btns .bt-w a{
+    display:block;
+    width:120px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    border: 1px solid #6B6B6B;
+    border-radius: 4px;
+    font-size: 18px;
+    color: #6B6B6B;
+}

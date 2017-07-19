@@ -1,0 +1,46 @@
+<div class="myorder" id="myorder" ng-controller="RankController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail beily rank clear">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div ng-include="'static/partials/public/beily-pub.html'"></div>
+                    <div class="table-header">
+                        <ul>
+                            <li style="text-align:left;padding-left:18px;">排名</li>
+                            <li style="width:30%;">用户昵称</li>
+                            <li style="text-align:right;">贝里</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="order-info clear" ng-repeat="rank in ranks" style="border-bottom:1px solid #e5e5e5;margin-top:0px;">
+                            <ul>
+                                <li style="height:40px;line-height:40px;padding:10px 0px;padding-left:8px;">
+                                    <p ng-style="{background:'{{currentPage==1?'':'none'}}'}">{{currentPage==1?($index>2?$index+1:''):($index+1+(currentPage-1)*10)}}</p>
+                                </li>
+                                <li style="height:40px;line-height:40px;padding:10px 0px;">
+                                    <p ng-bind="rank.name"></p>
+                                </li>
+                                <li style="height:40px;line-height:40px;padding:10px 0px;text-align:right;width:32%;">
+                                    <p ng-bind="rank.balance"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+        <!--分页开始-->
+        <div class="pager" style="margin-top:15px;">
+            <pager page-count="pageCount" current-page="currentPage" on-page-change="onPageChange()"
+                   first-text="首页" next-text="下一页" prev-text="上一页" last-text="尾页">
+            </pager>
+        </div>
+        <!--分页结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

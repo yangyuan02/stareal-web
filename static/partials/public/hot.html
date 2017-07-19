@@ -1,0 +1,11 @@
+<div class="list-hot" ng-controller="PublicController" style="width:266px;">
+    <ul>
+        <li ng-repeat="hot_good in hots" ui-sref="main.detail({good_id:{{hot_good.id}}})">
+            <div class="list-hot-title" ng-bind="hot_good.title"></div>
+            <div class="hot-time">
+                <p class="fl" ng-bind="hot_good.date"></p>
+                <p class="fr"><span ng-bind="hot_good.price|currency:'￥'"></span>起</p>
+            </div>
+        </li>
+    </ul>
+</div>

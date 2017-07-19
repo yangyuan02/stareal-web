@@ -1,0 +1,45 @@
+<div class="myorder" id="myorder" ng-controller="RecoverController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail beily recover">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div ng-include="'static/partials/public/beily-pub.html'"></div>
+                    <div>
+                        <div class="order-info clear" style="border-bottom:1px solid #E5E5E5;">
+                            <ul>
+                                <li>
+                                    <p style="background:none;width:100px;height:26px;">每日签到</p>
+                                </li>
+                                <li style="padding:20px 0px;margin-top:5px;">
+                                    <p>+5</p>
+                                </li>
+                                <li>
+                                    <p ng-style="gbs" ng-bind="gbn" ng-click="GoIndex()"></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order-info clear" style="border-bottom:1px solid #E5E5E5;">
+                            <ul>
+                                <li>
+                                    <p style="background:none;width:100px;height:26px;">每日评论</p>
+                                </li>
+                                <li style="padding:20px 0px;margin-top:5px;">
+                                    <p>+5</p>
+                                </li>
+                                <li>
+                                    <p ng-style="gbs1" ng-bind="gbn1" ng-click="GoComment()"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

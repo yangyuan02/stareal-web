@@ -1,0 +1,52 @@
+<div class="myorder" id="myorder" ng-controller="ReceiveController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail personal receive">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div class="tabs">
+                        <ul>
+                            <!--<li><a href="" ui-sref="my.comment">收到的评论</a></li>-->
+                            <li><a href="" ui-sref="my.receive" class="active">发出去评论</a></li>
+                        </ul>
+                    </div>
+                    <!--收到的评论开始-->
+                    <div class="comment" ng-repeat="comme in comments">
+                        <div class="row-comment clear">
+                            <div class="avatar fl">
+                                <img ng-src="{{comme.headimgurl}}" alt="" err-src="static/img/userdefault.png">
+                            </div>
+                            <div class="comment-con fl">
+                                <p class="name" ng-bind="comme.nickname"></p>
+                                <p class="reply" ng-bind="comme.content"></p>
+                                <div class="good-con">
+                                    <div class="thumb fl" ui-sref="main.detail({good_id:comme.good_id})">
+                                        <img ng-src="{{comme.thumb}}" alt="">
+                                    </div>
+                                    <div class="wenzi fl">
+                                        <p ng-bind="comme.name"></p>
+                                        <p><span>上海梅赛德斯奔驰文化中心</span><sapn>上海市浦东新区世博大道1200号</sapn></p>
+                                        <p>2017-03-10至2017-03-12</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--收到的评论结束-->
+                </div>
+            </div>
+            <!--分页开始-->
+            <div class="pager" style="margin-top:15px;">
+                <pager page-count="pageCount" current-page="currentPage" on-page-change="onPageChange()"
+                       first-text="首页" next-text="下一页" prev-text="上一页" last-text="尾页">
+                </pager>
+            </div>
+            <!--分页结束-->
+        </div>
+        <!--配送方式结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

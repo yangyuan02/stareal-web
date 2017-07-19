@@ -1,0 +1,79 @@
+<div class="header" ng-controller="PublicController">
+    <!--首页头部start-->
+    <div class="Indextop">
+        <div class="content">
+            <div class="company fl">
+                <a ui-sref="main.index" style="color: #fff;">
+                    <!--<span>星锐娱乐</span>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                    <!--<span>www.stareal.cn</span>-->
+                </a>
+            </div>
+            <div class="tel fr">
+                <!--<span>手机星锐娱乐&nbsp;|&nbsp;客服电话:400-879-8613</span>-->
+            </div>
+        </div>
+    </div>
+    <!--首页头部end-->
+    <!--白色导航栏开始-->
+    <div class="white_nav" style="display:block">
+        <div class="head gradient">
+            <div class="logo_11 fl" ui-sref="main.index"><img src="/static/img/logo_123.png" alt="" style="margin-top:10px;cursor:pointer"></div>
+            <div class="nav fl">
+                <ul>
+                    <li ng-repeat="nav in navs" class="p_li" ng-class="{active:isActiveNav({{nav.type}})}">
+                        <a ui-sref="main.list({kind:{{nav.type}}-1,sort:'hot',direct:'desc',keyword:''})" ng-class="{active:isActiveNav({{nav.type}})}">{{nav.name}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sreach fl">
+                <input type="text" id="js_search_val" placeholder="搜索明星、演出、场馆" ng-model="keyword" ng-keydown="searchenter1(event)" ng-keyup="change(keyword)">
+                <div class="sreach_btn" ng-click="search()"></div>
+                <ul id="SearchList" ng-if="search_show">
+                    <li ng-repeat="attr in arr"><a ui-sref="main.list({kind:'all',sort:'hot',direct:'desc',keyword:'{{attr.title|trim}}'})">{{attr.title}}</a></li>
+                </ul>
+            </div>
+            <div class="login fl" ng-show="!tel">
+                <a href="" id="show" ng-click="loginModa()">登录</a>
+            </div>
+            <div class="dropdown-toggle" ng-show="!!tel" ng-show="!!tel" ng-mouseover="show()" ng-mouseleave="hide()">
+                <a class="toggle-title">{{tel}}</a>
+                <div class="toggle-menu clear" ng-if="menu_show">
+                    <ul>
+                        <li><a ui-sref="my.orders">我的订单</a></li>
+                        <li><a ui-sref="my.beily">我的贝里</a></li>
+                        <li><a ui-sref="my.member">我的会员</a></li>
+                        <li><a ui-sref="my.favorite">我的收藏</a></li>
+                        <li><a ui-sref="my.receive">我的评论</a></li>
+                        <li><a ui-sref="my.coupon">我的卡劵</a></li>
+                        <li><a ui-sref="my.personal">账户设置</a></li>
+                        <li><a href="oauth/logout" ng-click="logout()">退出登录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--白色导航结束-->
+    <!--登录弹窗开始-->
+    <div id="mask" close-model>
+        <div id="content" stop-propagation>
+            <div class="con-box">
+                <div class="login">
+                    <img src="static/img/logo.png" alt="">
+                </div>
+                <p>欢迎登录星锐娱乐</p>
+                <p>无需注册 快捷登录</p>
+                <div class="tel"><input type="text" placeholder="手机号" ng-model="telphone_no"></div>
+                <div class="code">
+                    <div class="code-input fl" style="width:134px;">
+                        <input type="text" placeholder="手机验证码" style="width:134px;" ng-model="code">
+                    </div>
+                    <div class="code-btn fr" ng-click="sendCode()" ng-bind="paracont"></div>
+                </div>
+                <div class="login-btn" ng-click="login()">登录</div>
+            </div>
+            <div id="close" close-model></div>
+        </div>
+    </div>
+    <!--登录弹窗结束-->
+</div>
+<stareal-alert></stareal-alert>

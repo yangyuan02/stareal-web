@@ -1,0 +1,27 @@
+<div class="w clearfix" ng-controller="PublicController">
+    <div class="logo pull-left">
+        <div class="logo-img">
+            <a ui-sref="main.index">
+                <img src="static/img/logo.png" width="180" alt="" title="">
+            </a>
+        </div>
+        <div class="logo-txt" style="cursor:pointer;position:relative" >
+            <div class="logo-city" style="float:left;border-left: 2px solid #3c3c3c;padding-left: 20px">
+                <div style="text-overflow: ellipsis; -o-text-overflow:ellipsis;white-space: nowrap;overflow: hidden;  float: left; max-width: 90px;}" ng-click="tipArea()">上海</div>
+                <div class="city_szx1"></div>
+            </div>
+        </div>
+    </div>
+    <div class="search pull-left">
+        <form class="search-bor" >
+            <div class="search-input" id="wei">
+                <input id="js_search_val" ng-model="keyword" autocomplete="off" placeholder="搜索明星、演出、场馆" ng-keydown="searchenter1(event)" ng-keyup="change(keyword)">
+                <ul id="SearchList" ng-if="search_show">
+                    <li ng-repeat="attr in arr"><a ui-sref="main.list({kind:'all',sort:'hot',direct:'desc',keyword:'{{attr.title|trim}}'})">{{attr.title}}</a></li>
+                </ul>
+            </div>
+            <div class="search-btn" id="js_search_btn" ng-click="search()">搜 索</div>
+        </form>
+        <div class="search-txt"></div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<div ng-controller="OrderController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail beily order">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div class="tabs">
+                        <ul>
+                            <li><a href="" class="active" ui-sref="my.order({id:orderId})">订单详情</a></li>
+                            <li><a href="" ui-sref="my.express({id:orderId})" style="width:100px;color: #6B6B6B;background:none;">物流信息</a></li>
+                        </ul>
+                    </div>
+                    <div class="status">
+                        <p ng-style="defstyle"></p>
+                        <p>订单状态：<sapn ng-bind="wzstate"></sapn></p>
+                    </div>
+                    <div>
+                        <!--订单详情开始-->
+                        <div class="pay_list clear">
+                            <div class="pay_info fl">
+                                <div class="pay-detail fl">
+                                    <div class="clear" style="margin-bottom:10px;">
+                                        <div class="pay_order fl">
+                                            <p class="shang-title">订单编号：</p>
+                                        </div>
+                                        <div class="pay-row fl" style="margin-top:-5px;">
+                                            <p class="fl"><span ng-bind="order.order_id"></span></p>
+                                            <p class="fl">下单时间：<span>{{order.create_time*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="clear" style="margin-top:6px;">
+                                        <div class="pay_order fl">
+                                            <p class="shang-title">商品信息：</p>
+                                        </div>
+                                        <div class="pay-row fl" style="margin-top:-4px;">
+                                            <p><a href="" ng-bind="order.title" ng-click="orderUrl(order.good_id)"></a></p>
+                                            <p class="time" ng-bind="order.begindate"></p>
+                                            <p class="price" ng-bind="order.site_title"></p>
+                                            <p><span ng-bind="order.num"></span><span ng-bind="order.area"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--快递配送-->
+                                <div class="people_info fl" style="margin-left:40px;" ng-show="param.deliverType == 1">
+                                    <ul>
+                                        <li class="clear"><p class="fl">配送方式：</p><p class="fl" ng-bind="order.express_type"></p></li>
+                                        <li class="clear"><p class="fl">个人信息：</p><p class="fl"><sapn ng-bind="order.name"></sapn><span ng-bind="order.mobile"></span></p></li>
+                                        <li class="clear"><p class="fl">收货地址：</p><p class="fl" ng-bind="order.address"></p></li>
+                                    </ul>
+                                </div>
+                                <!--上门取票-->
+                                <div class="people_info fl" style="margin-left:40px;" ng-show="param.deliverType == 3">
+                                    <ul>
+                                        <li class="clear"><p class="fl" ng-bind="order.live_name"></p><p class="fl" ng-bind="order.live_mobile"></p></li>
+                                        <li class="clear"><p class="fl">取票时间：</p><p class="fl">周一至周五 9:00~18:00</p></li>
+                                        <li class="clear"><p class="fl">取票地址：</p><p class="fl">上海市闵行区新龙路1333弄69号605室</p></li>
+                                        <li class="clear"><p class="fl">取票说明：</p><p class="fl">凭手机短信取票码取票</p></li>
+                                        <li class="clear"><p class="fl">客服电话：</p><p class="fl">400-879-8613</p></li>
+                                    </ul>
+                                </div>
+                                <!--现场取票-->
+                                <div class="people_info fl" style="margin-left:40px;" ng-show="param.deliverType == 2">
+                                    <ul>
+                                        <li class="clear"><p class="fl" ng-bind="order.live_name+'&nbsp;'" style="min-width:70px;text-align:right;"></p><p class="fl" ng-bind="order.live_mobile"></p></li>
+                                        <li class="clear"><p class="fl">取票时间：</p><p class="fl">演出开场前一小时</p></li>
+                                        <li class="clear"><p class="fl">取票说明：</p><p class="fl">凭手机短信取票码取票</p></li>
+                                        <li class="clear"><p class="fl">取票地址：</p><p class="fl">演出场馆</p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--订单详情结束-->
+                    </div>
+                    <div class="pay_price fr">
+                        <div class="yanchu-info">
+                            <ul>
+                                <li class="clear"><p class="fl">商品总金额：</p><p class="fr" ng-bind="order.giving_belly|currency:'￥'"></p></li>
+                                <li class="clear"><p class="fl">快递费用：</p><p class="fr" ng-bind="order.deliver_fee|currency:'￥'"></p></li>
+                                <li class="clear"><p class="fl">优惠劵抵扣：</p><p class="fr">－{{order.coupon_price|currency:'￥'}}</p></li>
+                                <li class="clear"><p class="fl">贝里抵扣：</p><p class="fr">－{{order.belly|currency:'￥'}}</p></li>
+                                <li class="clear"><p class="fl">应付总金额：</p><p class="fr" ng-bind="order.total|currency:'￥'"></p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

@@ -1,0 +1,52 @@
+<div ng-controller="ListController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:120px;">
+        <div class="list-con clear">
+            <div class="filter">
+                <a ng-class="{true: 'list_filteron', false: ''}[isHot]"
+                   ng-click="filter('hot','desc')">按热门</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                <a ng-class="{true: '', false: 'list_filteron'}[isHot]"
+                   ng-click="filter('date','asc')">按时间</a>
+            </div>
+            <div class="list-l fl" style="padding-left:4px;">
+                <ul>
+                    <li ng-repeat="good in goods" ui-sref="main.detail({good_id:{{good.id}}})">
+                        <div class="good-l fl">
+                            <img ng-src="{{good.thumb}}" alt="">
+                        </div>
+                        <div class="good-r fr">
+                            <p class="title"><a href="" ng-bind="good.title"></a></p>
+                            <p class="time" ng-bind="good.date"></p>
+                            <p class="address" ng-bind="good.site_title"></p>
+                            <p class="price" style="margin-bottom:12px;"><span>￥{{good.price}}</span>起</p>
+                            <div class="status" ng-style="btnSetColor(good.state)" ng-bind="btnText(good.state)"></div>
+                        </div>
+                        <div class="coupon" ng-bind="good.coupon_label" ng-if="good.coupon_label"></div>
+                        <div class="buy" ui-sref="main.detail({good_id:{{good.id}}})">立即购买</div>
+                    </li>
+                </ul>
+                <div class="nothing" style="text-align: center;margin-top:60px;font-size:20px;" ng-show="show">暂无内容</div>
+            </div>
+            <div class="list-r fr">
+                <div class="list-serve">
+                    <div class="img1">
+                        <img src="static/img/download2.png" alt="">
+                    </div>
+                    <div class="img2" style="margin: 20px 0">
+                        <img src="static/img/serve2.png" alt="">
+                    </div>
+                </div>
+                <div class="hot-title">热门推荐</div>
+                <div ng-include="'static/partials/public/hot.html'"></div>
+            </div>
+        </div>
+        <!--分页开始-->
+        <div class="pager">
+            <pager page-count="pageCount" current-page="currentPage" on-page-change="onPageChange()"
+                   first-text="首页" next-text="下一页" prev-text="上一页" last-text="尾页">
+            </pager>
+        </div>
+        <!--分页结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

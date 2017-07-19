@@ -1,0 +1,123 @@
+<div class="myorder" id="myorder" ng-controller="OrdersController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail orders">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div class="tabs">
+                        <ul>
+                            <li><a href="" ng-class="{active:isActive(1)}" ng-click="filter('',1)">全部订单</a></li>
+                            <li><a href="" ng-class="{active:isActive(2)}" ng-click="filter(-1,2)">待支付</a></li>
+                            <li><a href="" ng-class="{active:isActive(3)}" ng-click="filter(0,3)">待发货</a></li>
+                            <!--<li><a href="" ng-class="{active:isActive(4)}" ng-click="filter('',4)">已发货</a></li>-->
+                            <li><a href="" ng-class="{active:isActive(5)}" ng-click="filter(1,5)">已完成</a></li>
+                        </ul>
+                    </div>
+                    <div class="table-header">
+                        <ul>
+                            <li>演出信息</li>
+                            <li>票面/说明</li>
+                            <li>张数</li>
+                            <li>订单金额(元)</li>
+                            <li>订单状态</li>
+                            <li>操作</li>
+                        </ul>
+                    </div>
+                    <div class="order-info" style="margin-top:0px;">
+                        <div class="order_row clear" ng-repeat="order in orders">
+                            <ul>
+                                <li>
+                                    <p><span style="margin-right:20px;">订单编号 : <em ng-bind="order.order_id"></em></span><sapn>下单时间 : <em ng-bind="order.create_time"></em></sapn></p>
+                                    <div class="order_row_info">
+                                        <div class="img fl" ng-click="orderUrl({{order.order_id}})">
+                                            <img ng-src="{{order.thumb}}" alt="">
+                                        </div>
+                                        <div class="order_row_txt fl" style="width:344px;">
+                                            <p><a ng-bind="order.title" ng-click="orderUrl({{order.order_id}})" style="width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"></a></p>
+                                            <p ng-bind="order.begindate"></p>
+                                            <p ng-bind="order.site_title"></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="order_row_info">
+                                        <p ng-bind="order.ori_price|currency:'￥'"></p>
+                                        <p ng-bind="order.area"></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="order_row_info">
+                                        <p ng-bind="order.num"></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="order_row_info" style="display:table;margin:0 auto;">
+                                        <p ng-bind="order.total|currency:'￥'"></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="order_row_info">
+                                        <p ng-bind="order.state=='未支付'?'待支付':order.state"></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="order_row_info">
+                                        <p ng-click="detail('{{order.order_id}}')"><a href="">{{order.state=='未支付'?'':'订单详情'}}</a></p>
+                                        <p ng-show="{{order.state=='已取消'}}">
+                                            <a href="" ng-click="alertmodel('{{order.order_id+'del'}}')">删除订单</a></p>
+                                        <p ng-show="{{order.state=='未支付'}}" order-time order-time-ser="order.create_timestamp" order-state="order.state" style="margin-top:-26px;">剩余：<span></span></p>
+                                        <p ng-show="{{order.state=='未支付'}}" ng-click="detail('{{order.order_id}}')"><a
+                                                href="" style="display:table;margin:0 auto;width:60px;height:30px;line-height:30px;text-align:center;background:#FF2450;color:#fff;border-radius:4px;">立即付款</a></p>
+                                        <p ng-show="{{order.state=='未支付'}}">
+                                            <a href="" ng-click="alertmodel('{{order.order_id+'cen'}}')">取消订单</a></p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!--删除提示开始-->
+                            <div class="pubtps {{order.order_id+'del'}}" close-model>
+                                <div class="pubtps-box" stop-propagation>
+                                    <div class="con-box">
+                                        <div class="img"><img src="static/img/logo-2.png" alt=""></div>
+                                        <div class="tips"><p>善良的你，真的要删除这个订单吗?</p></div>
+                                        <div class="tpsbtns">
+                                            <a href="" class="a1" ng-click="deleteOrder({{order.order_id}})">残忍删除</a>
+                                            <a href="" class="a2" close-model>再看看</a>
+                                        </div>
+                                    </div>
+                                    <div class="pubtps-close" close-model></div>
+                                </div>
+                            </div>
+                            <!--删除提示结束-->
+                            <!--取消提示开始-->
+                            <div class="pubtps {{order.order_id+'cen'}}" close-model>
+                                <div class="pubtps-box" stop-propagation>
+                                    <div class="con-box">
+                                        <div class="img"><img src="static/img/logo-2.png" alt=""></div>
+                                        <div class="tips"><p>善良的你，真的要取消这个订单吗?</p></div>
+                                        <div class="tpsbtns">
+                                            <a href="" class="a1" ng-click="cancelOrder('{{order.order_id}}')">取消订单</a>
+                                            <a href="" class="a2" close-model>再看看</a>
+                                        </div>
+                                    </div>
+                                    <div class="pubtps-close" close-model></div>
+                                </div>
+                            </div>
+                            <!--删除提示结束-->
+                        </div>
+                        <div ng-if="show" style="text-align:center;font-size:20px;margin-top:20px;">暂无订单</div>
+                        <div class="pager">
+                            <pager page-count="pageCount" current-page="currentPage" on-page-change="onPageChange(sort)"
+                                   first-text="首页" next-text="下一页" prev-text="上一页" last-text="尾页">
+                            </pager>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

@@ -1,0 +1,41 @@
+<div class="myorder" id="myorder" ng-controller="ExpController">
+    <div ng-include="'static/partials/public/header.html'"></div>
+    <div class="min-1190" style="margin-top:160px;">
+        <!--配送方式开始-->
+        <div class="order-con">
+            <div class="w-title-1190" style="margin-bottom:30px;">我的星锐</div>
+            <div class="order-detail exp">
+                <div ng-include="'static/partials/public/mybg.html'"></div>
+                <div class="order-r fl">
+                    <div class="tabs">
+                        <ul>
+                            <li><a href="" ui-sref="my.order({id:orderId})">订单详情</a></li>
+                            <li><a href="" ui-sref="my.express({id:orderId})" style="width:100px;color: #6B6B6B;background:none;" class="active">物流信息</a></li>
+                        </ul>
+                    </div>
+                    <div class="table-header">
+                        <ul>
+                            <li style="width: auto;margin-left:50px;margin-right:40px;">运单号码：<span ng-bind="orderId"></span></li>
+                            <li style="width: auto;margin-right:40px;">物流公司：<span>顺丰速递</span></li>
+                            <li style="width: auto;">客服电话：<span>95338</span></li>
+                        </ul>
+                    </div>
+                    <div class="exp-info" ng-show="showExpress">
+                        <div class="exp-row" ng-repeat="exp in express">
+                            <i></i>
+                            <ul>
+                                <li style="margin-left:50px;" ng-bind="exp.time"></li>
+                                <!--<li>周日</li>-->
+                                <!--<li>20:30:08</li>-->
+                                <li ng-bind="exp.context"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="noet" ng-show="!showExpress"style="text-align:center;font-size:20px;margin-top:20px;">暂无物流信息</div>
+                </div>
+            </div>
+        </div>
+        <!--配送方式结束-->
+    </div>
+    <div ng-include="'static/partials/public/footer.html'"></div>
+</div>

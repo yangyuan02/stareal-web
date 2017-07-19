@@ -1,0 +1,360 @@
+.personal .order-r .personal-box{
+    display:table;
+    margin:0 auto;
+    margin-top:108px;
+    font-size: 18px;
+    color: #6B6B6B;
+}
+.personal .order-r .personal-box .tel{
+    margin-bottom:26px;
+}
+.personal .order-r .personal-box .tel-info{
+    width:162px;
+    text-align: right;
+}
+.personal .order-r .personal-box .tel .code-btn{
+    width:126px;
+    height:30px;
+    background: #70A0EC;
+    border-radius: 4px;
+    color:#fff;
+    line-height:30px;
+    text-align:center;
+    margin-left:10px;
+}
+.personal .order-r .personal-box .code input{
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    width:260px;
+    height:30px;
+    padding-left:10px;
+}
+.personal .order-r .personal-box .tel-submit{
+    background: #70A0EC;
+    border-radius: 4px;
+    width:80px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    color:#fff;
+    margin-left:160px;
+    margin-top:20px;
+    cursor:pointer;
+}
+.personal .order-r .personal-box .head{
+    display:table;
+    margin:0 auto;
+    margin-right:110px;
+    margin-bottom:30px;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    /*background:red;*/
+    position:relative;
+    cursor:pointer;
+}
+.personal .order-r .personal-box .head img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+}
+.personal .order-r .personal-box .head:hover .edit-head{
+    display:block;
+}
+.personal .order-r .personal-box .head .edit-head{
+    display:none;
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    line-height:80px;
+    text-align:center;
+    color:#fff;
+    font-size:14px;
+    background: rgba(0,0,0,0.50);
+}
+.personal .order-r .personal-box .head .edit-head input[type='file']{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:80px;
+    height:80px;
+    display:inline-block;
+    border-radius:50%;
+    opacity:0;
+    cursor:pointer;
+}
+.personal .order-r .personal-box .sex > p:nth-of-type(1) span{margin-right:10px;}
+.personal .order-r .personal-box .sex > p:nth-of-type(1) span a{
+    width:10px;
+    height:10px;
+    display:inline-block;
+    overflow:hidden;
+    margin-right:10px;
+    background: url(../img/add_default.png) no-repeat;
+    background-position:-10px 0px;
+}
+/*我的会员*/
+.member-info{
+    width:100%;
+    border-bottom:1px solid #E5E5E5;
+    height:120px;
+}
+.member-info .avatar-l{
+    width:80px;
+    height:80px;
+    text-align:center;
+    border-radius:50%;
+    background:#eee;
+    margin-right:20px;
+    margin-top:16px;
+}
+.member-info .avatar-l img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+}
+.member-info .avatar-r{
+    height:80px;
+    color: #6B6B6B;
+    margin-top:26px;
+}
+.member-info .avatar-r p:first-child{
+    font-size: 24px;
+    margin-bottom:16px;
+    line-height:24px;
+}
+.member-info .avatar-r p:last-child{
+    font-size: 20px;
+    line-height:24px;
+}
+/*特权列表*/
+.privilege .privilege-title{
+    font-size: 18px;
+    color: #6B6B6B;
+    margin-bottom:20px;
+    border-bottom:1px solid #E5E5E5;
+    padding-bottom:10px;
+    margin-top:40px;
+}
+.privilege .privilege-list ul li{
+    width:260px;
+    height:360px;
+    background: #F1F1F1;
+    border-radius: 10px;
+    text-align:center;
+    float:left;
+    margin-right:16px;
+    margin-bottom:16px;
+}
+.privilege .privilege-list ul li:nth-of-type(4){
+    margin-right:0px;
+}
+.privilege .privilege-list ul li .icon{
+    width:114px;
+    height:125px;
+    margin:0 auto;
+    background:url("../img/member.png") no-repeat;
+}
+.privilege .privilege-list ul li .icon.i-baoyou{
+    background-position:0px 0px;
+}
+.privilege .privilege-list ul li .icon.i-yhq{
+    background-position:-114px 0px;
+}
+.privilege .privilege-list ul li .icon.i-birthday{
+    background-position:-228px 0px;
+}
+.privilege .privilege-list ul li .icon.i-activity{
+    background-position:-342px 0px;
+}
+.privilege .privilege-list ul li .icon.i-privilege{
+    background-position:-456px 0px;
+}
+.yhq-btn{
+    width:60px;
+    height:24px;
+    text-align:center;
+    line-height:24px;
+    background:#EB3453;
+    margin:0 auto;
+    border-radius:4px;
+    color:#fff;
+    margin-top:20px;
+    cursor:pointer;
+}
+.privilege .privilege-list ul li p:nth-of-type(1){
+    margin:40px 0px 48px 0px;
+    font-size: 20px;
+    color: #6B6B6B;
+}
+.privilege .privilege-list ul li p:nth-of-type(2){
+    margin-top:40px;
+    font-size: 14px;
+    color: #6B6B6B;
+}
+/*我的经验值*/
+.my-value{
+    margin-top:20px;
+}
+.my-value .my-empirical{
+    font-size: 18px;
+    color: #6B6B6B;
+}
+.my-value .my-empirical span{
+    color:#FF2450;
+}
+.my-value .grade{
+    display: table;
+    margin:0 auto;
+    text-align:center;
+    font-size: 20px;
+    color: #6B6B6B;
+}
+.my-value .grade p:nth-of-type(2) span{
+    color:#FF2450;
+}
+.my-value .bar-info{
+    width:1022px;
+    height:80px;
+    margin:0 auto;
+    margin-top:20px;
+}
+.my-value .bar-info .bar{
+    width:1000px;
+    height:10px;
+    position:relative;
+    overflow:hidden;
+    border-radius:4px;
+}
+.my-value .bar-info .bar .bar2{
+    width:1000px;
+    height:10px;
+    background:#F1F1F1;
+    position:absolute;
+    z-index:13;
+    top:0px;
+    left:0px;
+}
+.my-value .bar-info .bar1{
+    height:10px;
+    background:url("../img/bar.png") no-repeat;
+}
+.my-value .bar-info .grade_wenzi ul li{
+    float:left;
+    width:70px;
+    text-align:center;
+}
+.my-value .bar-info .grade_wenzi{
+    margin-top:20px;
+}
+/*我的地址*/
+.address .order-r .add-list{
+    width:400px;
+    height:150px;
+    border: 1px solid rgba(0,0,0,0.10);
+    margin-right:40px;
+    margin-bottom:20px;
+    padding:20px 10px 20px 20px;
+}
+.address .order-r .add-list .operate .is_default a{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    background:url("../img/add_default.png") no-repeat;
+    background-position:-10px 0px;
+}
+.address .order-r .add-list .operate .is_default a.active{
+    background-position:0px 0px;
+}
+.address .order-r .add-list .operate .edit a{
+    font-size: 12px;
+    color: #999999;
+}
+.address .order-r .add-list .operate .edit a:hover{
+    font-size: 12px;
+    color: #70A0EC;
+}
+.address .order-r .add-list .address-info p:nth-of-type(1){
+    margin-top: 10px;
+    margin-bottom:15px;
+}
+.address .order-r .add-list .address-info p:nth-of-type(1) span:first-child{
+    font-size:14px;
+}
+.address .order-r .add-list .address-info p:nth-of-type(1) span:last-child{
+    border: 1px solid #70A0EC;
+    border-radius: 4px;
+    display:inline-block;
+    width:70px;
+    height:20px;
+    text-align:center;
+    line-height:20px;
+    font-size:14px;
+    color: #70A0EC;
+}
+.address .order-r .add-list .address-info p{
+    font-size: 12px;
+    color: #6B6B6B;
+}
+.address .order-r .add-list .address-info p:nth-of-type(3){
+    margin:6px 0px;
+}
+.address .order-r .add-btn{
+    width:400px;
+    height:150px;
+    text-align:center;
+    line-height:150px;
+    background: rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.10);
+    background:url("../img/address.png") no-repeat center;
+    background-position:184px 30px;
+    cursor:pointer;
+}
+.address .order-r .add-btn span{
+    margin-top:10px;
+}
+/*我的评论*/
+.receive .comment{
+    padding:34px 0px 0px 50px;
+}
+.receive .comment .row-comment{
+    color:#6B6B6B;
+}
+.receive .comment .row-comment .avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background: #D8D8D8;
+    margin-right:40px;
+}
+.receive .comment .row-comment .avatar > img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+}
+.receive .comment .row-comment .comment-con .good-con{
+    width:722px;
+    height:120px;
+    background: #E5E5E5;
+    border-radius: 4px;
+    padding:20px 0px 0px 20px;
+}
+.receive .comment .row-comment .comment-con .reply{
+    margin:10px 0px;
+}
+.receive .comment .row-comment .comment-con .good-con .thumb{
+    width:66px;
+    height:88px;
+    margin-right:10px;
+    cursor:pointer;
+}
+.receive .comment .row-comment .comment-con .good-con .thumb img{
+    width:66px;
+    height:88px;
+}
+.receive .comment .row-comment .comment-con .good-con .wenzi p:nth-of-type(2){
+    margin:12px 0px;
+}
